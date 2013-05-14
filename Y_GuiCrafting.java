@@ -21,20 +21,20 @@ public class Y_GuiCrafting extends GuiContainer
     {
         super(new Y_ContainerWorkbench(inventoryplayer, world, i, j, k));
     }
-
+    @Override
     public void onGuiClosed()
     {
         super.onGuiClosed();
         inventorySlots.onCraftGuiClosed(mc.thePlayer);
     }
-
-    protected void drawGuiContainerForegroundLayer()
+    @Override
+    protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
         fontRenderer.drawString("Portable Crafting", 28, 6, 0x404040);
         fontRenderer.drawString("Inventory", 8, (ySize - 96) + 2, 0x404040);
     }
-
-    protected void drawGuiContainerBackgroundLayer(float f)
+    @Override
+    protected void drawGuiContainerBackgroundLayer(float f,int par1, int par2)
     {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         mc.renderEngine.bindTexture("/gui/crafting.png");

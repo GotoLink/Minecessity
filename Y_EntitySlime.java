@@ -14,12 +14,12 @@ public class Y_EntitySlime extends EntitySlime
     {
         super(world);
     }
-
+    @Override
     protected int getDropItemId()
     {
 		return Item.slimeBall.itemID;
     }
-
+    @Override
     public boolean getCanSpawnHere()
     {
 		boolean nearLava=false;
@@ -33,10 +33,10 @@ public class Y_EntitySlime extends EntitySlime
 		}}}
         return posY < 16D && nearLava && new Random().nextInt(20)==0;
     }
-	
+    @Override
 	public int getMaxSpawnedInChunk()
     {
-		int i = Minecessity.props.getInt("Slime spawn limit each chunk");
+		int i = Minecessity.instance.slimeSpawnLimit;
 		i= i<0 ? 0:i;
         return i;
     }
