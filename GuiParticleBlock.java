@@ -7,6 +7,8 @@ import net.minecraft.src.ModLoader;
 public class GuiParticleBlock extends GuiScreen
 {
 
+	TileEntityParticleBlock currentTile;
+	int type;
     public GuiParticleBlock(TileEntityParticleBlock tile)
     {
 		currentTile = tile;
@@ -46,7 +48,4 @@ public class GuiParticleBlock extends GuiScreen
 			mc.displayGuiScreen(null);
 		}
 	}
-	
-	TileEntityParticleBlock currentTile;
-	int type;
 }

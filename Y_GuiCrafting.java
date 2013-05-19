@@ -1,7 +1,3 @@
-// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
-// Jad home page: http://www.kpdus.com/jad.html
-// Decompiler options: packimports(3) braces deadcode 
-
 package mods.minecessity;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -9,10 +5,6 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
-
-// Referenced classes of package net.minecraft.src:
-//            GuiContainer, ContainerWorkbench, Container, FontRenderer, 
-//            RenderEngine, InventoryPlayer, World
 
 public class Y_GuiCrafting extends GuiContainer
 {

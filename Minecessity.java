@@ -1,5 +1,17 @@
 package mods.minecessity;
 
+import mods.minecessity.blocks.BlockCeilLamp;
+import mods.minecessity.blocks.BlockChair;
+import mods.minecessity.blocks.BlockMobAttract;
+import mods.minecessity.blocks.BlockParticle;
+import mods.minecessity.blocks.BlockProjectDeflector;
+import mods.minecessity.blocks.BlockTable;
+import mods.minecessity.blocks.BlockTempTorch;
+import mods.minecessity.items.ItemCactusStick;
+import mods.minecessity.items.ItemCeilLamp;
+import mods.minecessity.items.ItemParticleGun;
+import mods.minecessity.items.ItemPrtbWorkBence;
+import mods.minecessity.items.MagicItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.client.Minecraft;
@@ -16,7 +28,9 @@ import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -86,7 +100,7 @@ public class Minecessity
 		EntityRegistry.addSpawn(Y_EntitySlime.class, 1, 1, 5, EnumCreatureType.monster,WorldType.base12Biomes);
 		
 		GameRegistry.registerTileEntity(TileEntityParticleBlock.class,"Particle Block Tile Entity");
-	
+		NetworkRegistry.instance().registerGuiHandler(this, proxy);
 	}
 	
 	public void registerBlocksItemsRecipes()
@@ -154,9 +168,10 @@ public class Minecessity
 		GameRegistry.registerItem(particleGun,"Particles Gun");
 		LanguageRegistry.instance().addNameForObject(particleGun,"en_US","Particles Gun");
 		GameRegistry.addRecipe(new ItemStack(particleGun,1),new Object[]{
-			"123", " 45", " 6I" , 'I',Item.ingotIron, '1',new ItemStack(Item.dyePowder,1), '2',new ItemStack(Item.dyePowder,2)
-			, '3',new ItemStack(Item.dyePowder,4), '4',new ItemStack(Item.dyePowder,7), '5',new ItemStack(Item.dyePowder,8)
-			, '6',new ItemStack(Item.dyePowder,15)
+			"123", " 45", " 6I" , 'I',Item.ingotIron,
+			'1',new ItemStack(Item.dyePowder,1), '2',new ItemStack(Item.dyePowder,2)
+			, '3',new ItemStack(Item.dyePowder,4), '4',new ItemStack(Item.dyePowder,7)
+			, '5',new ItemStack(Item.dyePowder,8), '6',new ItemStack(Item.dyePowder,15)
 		});
     }
 	@Deprecated
