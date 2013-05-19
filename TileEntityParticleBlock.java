@@ -13,13 +13,13 @@ public class TileEntityParticleBlock extends TileEntity
     {
         particlesType=0;
     }
-
+    @Override
     public void writeToNBT(NBTTagCompound nbttagcompound)
     {
         super.writeToNBT(nbttagcompound);
 		nbttagcompound.setInteger("P Type",particlesType);
     }
-
+    @Override
     public void readFromNBT(NBTTagCompound nbttagcompound)
     {
         super.readFromNBT(nbttagcompound);
@@ -28,8 +28,10 @@ public class TileEntityParticleBlock extends TileEntity
 	
 	public void changeType()
 	{
-		if(particlesType<3) particlesType++;
-		else particlesType=0;
+		if(particlesType<3) 
+			particlesType++;
+		else 
+			particlesType=0;
 		onInventoryChanged();
 	}
 	

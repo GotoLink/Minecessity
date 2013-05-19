@@ -2,15 +2,24 @@ package mods.minecessity;
 
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 public class EntityLightBullet extends Entity
 {
+	int maxLife;
+	int particlesType;
+	float size;
+	EntityLiving owner;
+	String ownerName;
     public EntityLightBullet(World world)
     {
         super(world);
@@ -119,25 +128,20 @@ public class EntityLightBullet extends Entity
     {
         return true;
     }
-
+	@Override
     public float getCollisionBorderSize()
     {
         return 0F;
     }
-
-    public boolean attackEntityFrom(Entity entity, int i)
+    @Override
+    public boolean attackEntityFrom(DamageSource par1DamageSource, int i)
     {
 		return false;
     }
-
+    @SideOnly(Side.CLIENT)
     public float getShadowSize()
     {
         return 0.0F;
     }
 	
-	int maxLife;
-	int particlesType;
-	float size;
-	EntityLiving owner;
-	String ownerName;
 }

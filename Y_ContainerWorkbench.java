@@ -13,8 +13,8 @@ public class Y_ContainerWorkbench extends ContainerWorkbench
         super(inventoryplayer, world, i, j, k);
     }
 
-    public boolean isUsableByPlayer(EntityPlayer entityplayer)
+    public boolean canInteractWith(EntityPlayer par1EntityPlayer)
     {
-        return true;
+    	return true;
     }
 }
