@@ -1,7 +1,8 @@
-package mods.minecessity;
+package mods.minecessity.blocks;
 
 import java.util.Random;
 
+import mods.minecessity.Minecessity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,7 +12,7 @@ import net.minecraft.world.World;
 
 public class BlockTempTorch extends BlockTorch
 {
-    protected BlockTempTorch(int i)
+    public BlockTempTorch(int i)
     {
         super(i);
     }

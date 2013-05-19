@@ -1,4 +1,4 @@
-package mods.minecessity;
+package mods.minecessity.blocks;
 
 import java.util.List;
 import java.util.Random;
@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 
 public class BlockProjectDeflector extends Block
 {
-    protected BlockProjectDeflector(int i)
+    public BlockProjectDeflector(int i)
     {
         super(i, Material.ground);
         setTickRandomly(true);

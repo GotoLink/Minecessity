@@ -1,4 +1,4 @@
-package mods.minecessity;
+package mods.minecessity.blocks;
 
 import java.util.List;
 import java.util.Random;
@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 
 public class BlockMobAttract extends Block
 {
-    protected BlockMobAttract(int i)
+    public BlockMobAttract(int i)
     {
         super(i, Material.ground);
         setTickRandomly(true);

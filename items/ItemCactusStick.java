@@ -1,7 +1,9 @@
-package mods.minecessity;
+package mods.minecessity.items;
 
 import java.util.List;
 
+import mods.minecessity.Minecessity;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,11 +15,13 @@ import net.minecraft.world.World;
 
 public class ItemCactusStick extends Item
 {
-    protected ItemCactusStick(int i)
+    public ItemCactusStick(int i)
     {
         super(i);
 		setMaxStackSize(1);
 		setMaxDamage(32);
+		setFull3D();
+		setCreativeTab(CreativeTabs.tabCombat);
     }
     @Override
 	public void onUpdate(ItemStack itemstack, World world, Entity entity, int k, boolean flag)

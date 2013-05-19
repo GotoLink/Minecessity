@@ -1,5 +1,6 @@
-package mods.minecessity;
+package mods.minecessity.items;
 
+import mods.minecessity.EntityLightBullet;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -7,7 +8,7 @@ import net.minecraft.world.World;
 
 public class ItemParticleGun extends Item
 {
-    protected ItemParticleGun(int i)
+    public ItemParticleGun(int i)
     {
         super(i);
 		setMaxStackSize(1);

@@ -1,19 +1,17 @@
-package mods.minecessity;
+package mods.minecessity.items;
 
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class MagicItem extends Item
+public class ItemCeilLamp extends MagicItem
 {
-	protected int block;
-    protected MagicItem(int i,int blockID)
+	public ItemCeilLamp(int i,int blockID)
     {
-        super(i);
-        this.block=blockID;
-		this.setCreativeTab(CreativeTabs.tabDecorations);
+        super(i,blockID);
     }
     @Override
 	public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int i, int j, int k, int l, float f1, float f2, float f3)
@@ -27,10 +25,11 @@ public class MagicItem extends Item
 		if(l==4)i--;
 		if(l==5)i++;
 		
-		world.setBlock(i,j,k,block);
+		if(!world.isAirBlock(i,j+1,k))
+			world.setBlock(i,j,k,block);
+			
 		if(world.getBlockId(i,j,k)==block)
 			itemStack.stackSize--;
 		return true;
 	}
-
 }
