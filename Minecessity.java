@@ -1,12 +1,11 @@
 package mods.minecessity;
 
-import mods.minecessity.blocks.BlockCeilLamp;
 import mods.minecessity.blocks.BlockChair;
 import mods.minecessity.blocks.BlockMobAttract;
 import mods.minecessity.blocks.BlockParticle;
 import mods.minecessity.blocks.BlockProjectDeflector;
-import mods.minecessity.blocks.BlockTable;
 import mods.minecessity.blocks.BlockTempTorch;
+import mods.minecessity.blocks.MagicBlock;
 import mods.minecessity.items.ItemCactusStick;
 import mods.minecessity.items.ItemCeilLamp;
 import mods.minecessity.items.ItemParticleGun;
@@ -14,9 +13,7 @@ import mods.minecessity.items.ItemPrtbWorkBence;
 import mods.minecessity.items.MagicItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTorch;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.WorldType;
@@ -28,7 +25,6 @@ import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
@@ -79,13 +75,13 @@ public class Minecessity
 	@Init
     public void load(FMLInitializationEvent event)
     {
-    	table = new BlockTable(tableBlockId).setUnlocalizedName("wood");
     	mobAttractor = new BlockMobAttract(mobAttractorId).setHardness(0.5F).setUnlocalizedName("minecessity:mobAttractor");
     	tempTorch = (BlockTorch)(new BlockTempTorch(temporaryTorchId)).setLightValue(0.9375F).setUnlocalizedName("torch");
     	projDeflector = new BlockProjectDeflector(deflectorId).setHardness(0.85F).setUnlocalizedName("minecessity:deflector");
     	particleBlock = new BlockParticle(particleBlockId).setHardness(0.4F).setUnlocalizedName("minecessity:particleBlock");
-    	chair = new BlockChair(chairBlockId).setUnlocalizedName("wood");
-    	ceilLamp = new BlockCeilLamp(ceilLampBlockId).setUnlocalizedName("wood");
+    	table = new MagicBlock(tableBlockId,proxy.rendererTable,tableItemId);
+    	chair = new BlockChair(chairBlockId,proxy.rendererChair,chairItemId);
+    	ceilLamp = new MagicBlock(ceilLampBlockId,proxy.rendererCeilLamp,ceilLampItemId).setLightValue(1F);
     	
     	tableItem = new MagicItem(tableItemId,tableBlockId).setUnlocalizedName("minecessity:table");
     	cactusStick = new ItemCactusStick(cactusPickerId).setUnlocalizedName("minecessity:cactusPicker");
@@ -96,8 +92,8 @@ public class Minecessity
     	
     	registerBlocksItemsRecipes();
     	proxy.registerRenderer();
-    	EntityRegistry.registerModEntity(Y_EntitySlime.class, "YSlime",1,this,40,1,true);
-		EntityRegistry.addSpawn(Y_EntitySlime.class, 1, 1, 5, EnumCreatureType.monster,WorldType.base12Biomes);
+    	EntityRegistry.registerModEntity(LavaEntitySlime.class, "YSlime",1,this,40,1,true);
+		EntityRegistry.addSpawn(LavaEntitySlime.class, 1, 1, 5, EnumCreatureType.monster,WorldType.base12Biomes);
 		
 		GameRegistry.registerTileEntity(TileEntityParticleBlock.class,"Particle Block Tile Entity");
 		NetworkRegistry.instance().registerGuiHandler(this, proxy);
@@ -174,7 +170,7 @@ public class Minecessity
 			, '5',new ItemStack(Item.dyePowder,8), '6',new ItemStack(Item.dyePowder,15)
 		});
     }
-	@Deprecated
+	/*@Deprecated
 	public boolean OnTickInGame(Minecraft minecraft)
     {
 		EntityPlayer player = minecraft.thePlayer;
@@ -189,9 +185,5 @@ public class Minecessity
 			
 		}}}
         return true;
-    }
-	
-	
-	
-	
+    }*/
 }
