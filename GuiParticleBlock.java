@@ -2,8 +2,9 @@ package mods.minecessity;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.src.ModLoader;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+@SideOnly(Side.CLIENT)
 public class GuiParticleBlock extends GuiScreen
 {
 
@@ -12,7 +13,6 @@ public class GuiParticleBlock extends GuiScreen
     public GuiParticleBlock(TileEntityParticleBlock tile)
     {
 		currentTile = tile;
-		if(tile==null) ModLoader.getMinecraftInstance().thePlayer.addChatMessage("tile null");
 		type = tile.particlesType;
     }
     @Override

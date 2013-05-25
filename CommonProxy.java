@@ -7,15 +7,18 @@ import cpw.mods.fml.common.network.IGuiHandler;
 
 public class CommonProxy implements IGuiHandler{
 	
-	public static int rendererTable=-10,rendererChair=-11,rendererCeilLamp=-12,GUI_ID=123;
+	public static int rendererTable=-10,rendererChair=-11,rendererCeilLamp=-12,
+			CRAFT_GUI_ID=123,PARTICLE_GUI=124;
 	
 	public void registerRenderer(){}
 
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world,
 			int x, int y, int z) {
-		if(ID==GUI_ID)
-			return new Y_ContainerWorkbench(player.inventory, world, x, y, z);
+		if(ID==CRAFT_GUI_ID)
+			return new PortableContainerWorkbench(player.inventory, world, x, y, z);
+		else if(ID==PARTICLE_GUI)
+			return null;
 		else
 			return null;
 	}
@@ -23,8 +26,10 @@ public class CommonProxy implements IGuiHandler{
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world,
 			int x, int y, int z) {
-		if(ID==GUI_ID)
+		if(ID==CRAFT_GUI_ID)
 			return new Y_GuiCrafting(player.inventory, world, x, y, z);
+		else if(ID==PARTICLE_GUI)
+			return new GuiParticleBlock((TileEntityParticleBlock)world.getBlockTileEntity(x, y, z));
 		else
 			return null;
 	}
