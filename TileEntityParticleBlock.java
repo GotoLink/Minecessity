@@ -40,9 +40,11 @@ public class TileEntityParticleBlock extends TileEntity
 		EntityLightBullet bullet = new EntityLightBullet(world);
 		bullet.setPosition(i+0.5,j+1,k+0.5);
 		bullet.maxLife = 100;
-		bullet.setVelocity(new Random().nextFloat()/4-1/8, new Random().nextFloat()*3+1,new Random().nextFloat()/4-1/8);
 		bullet.particlesType=particlesType;
-		if(!world.isRemote)
+		if(!world.isRemote){
+			//bullet.setVelocity(new Random().nextFloat()/4-1/8, new Random().nextFloat()*3+1,new Random().nextFloat()/4-1/8);
 			world.spawnEntityInWorld(bullet);
+		}
+			
 	}
 }

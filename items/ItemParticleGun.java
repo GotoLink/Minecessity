@@ -1,6 +1,7 @@
 package mods.minecessity.items;
 
 import mods.minecessity.EntityLightBullet;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,11 +14,12 @@ public class ItemParticleGun extends Item
         super(i);
 		setMaxStackSize(1);
 		setMaxDamage(128);
+		setCreativeTab(CreativeTabs.tabRedstone);
     }
     @Override
 	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer e)
     {
-		EntityLightBullet bullet = new EntityLightBullet(world,e,1.2F);
+		EntityLightBullet bullet = new EntityLightBullet(world,e);
 		if(!world.isRemote)
 			world.spawnEntityInWorld(bullet);
 		
@@ -25,7 +27,8 @@ public class ItemParticleGun extends Item
 		e.motionY *= 0.8;
 		e.motionZ *= 0.8;
 		e.motionX += bullet.motionX*-0.2;
-		e.motionY += bullet.motionY*-0.2;
+		if(e.onGround)
+			e.motionY += bullet.motionY*-0.2;
 		e.motionZ += bullet.motionZ*-0.2;
 		
 		itemstack.damageItem(1, e);

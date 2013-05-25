@@ -3,11 +3,9 @@ package mods.minecessity.blocks;
 import java.util.Random;
 
 import mods.minecessity.Minecessity;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.src.ModLoader;
 import net.minecraft.world.World;
 
 public class BlockTempTorch extends BlockTorch
@@ -22,12 +20,6 @@ public class BlockTempTorch extends BlockTorch
         return 1;
     }
     @Override
-	public void onBlockAdded(World world, int i, int j, int k)
-    {
-		super.onBlockAdded(world,i,j,k);
-		removeIfNoPlayerNearby(world,i,j,k);
-    }
-    @Override
 	public void onNeighborBlockChange(World world, int i, int j, int k, int l)
     {
 		super.onNeighborBlockChange(world,i,j,k,l);
@@ -39,18 +31,17 @@ public class BlockTempTorch extends BlockTorch
 		super.updateTick(world,i,j,k,random);
 		removeIfNoPlayerNearby(world,i,j,k);
     }
-    @Override
-	public void randomDisplayTick(World world, int i, int j, int k, Random random)
-    {
-		super.randomDisplayTick(world,i,j,k,random);
-		removeIfNoPlayerNearby(world,i,j,k);
-    }
 	
 	public void removeIfNoPlayerNearby(World world,int i,int j,int k)
 	{
-		EntityPlayer player = ModLoader.getMinecraftInstance().thePlayer;
-		if(player.getDistance(i,j,k)>63)
+		EntityPlayer player = world.getClosestPlayer(i, j, k, 63);
+		if (player==null)
 		{
+			int range=64;
+			while (world.getClosestPlayer(i, j, k, range)==null){
+				range++;
+			}
+			player= world.getClosestPlayer(i, j, k, range);
 			player.inventory.addItemStackToInventory(new ItemStack(Minecessity.tempTorch));
 			world.setBlockToAir(i,j,k);
 		}

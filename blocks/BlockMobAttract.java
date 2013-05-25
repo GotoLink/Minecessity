@@ -5,6 +5,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.pathfinding.PathEntity;
@@ -17,6 +18,7 @@ public class BlockMobAttract extends Block
     {
         super(i, Material.ground);
         setTickRandomly(true);
+        setCreativeTab(CreativeTabs.tabRedstone);
     }
     @Override
 	public int tickRate(World world)
@@ -24,9 +26,9 @@ public class BlockMobAttract extends Block
         return 2;
     }
     @Override
-	public void randomDisplayTick(World world, int i, int j, int k, Random random)
+	public void updateTick(World world, int i, int j, int k, Random random)
     {
-		List list = world.getEntitiesWithinAABB(EntityCreature.class, AxisAlignedBB.getBoundingBox(i,j,k,i+1,j+1,k+1).expand(16,16,16));
+		List list = world.getEntitiesWithinAABB(EntityCreature.class, AxisAlignedBB.getBoundingBox(i-8,j-8,k-8,i+8,j+8,k+8));
 		if(!list.isEmpty())
 		{
 			for(int p=0 ; p<list.size() ; p++)
@@ -35,7 +37,8 @@ public class BlockMobAttract extends Block
 				if(entities.getDistance(i,j,k)>2)
 				{
 					float f = 8F;
-					if(entities instanceof EntityMob) f=20F;
+					if(entities instanceof EntityMob) 
+						f=20F;
 					PathEntity path = world.getEntityPathToXYZ(entities,i,j,k,f,false,false,true,true);
 					entities.setPathToEntity(path);
 				}
