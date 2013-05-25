@@ -6,12 +6,15 @@ import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+@SideOnly(Side.CLIENT)
 public class Y_GuiCrafting extends GuiContainer
 {
 
     public Y_GuiCrafting(InventoryPlayer inventoryplayer, World world, int i, int j, int k)
     {
-        super(new Y_ContainerWorkbench(inventoryplayer, world, i, j, k));
+        super(new PortableContainerWorkbench(inventoryplayer, world, i, j, k));
     }
     @Override
     public void onGuiClosed()

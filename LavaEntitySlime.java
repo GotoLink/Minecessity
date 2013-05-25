@@ -7,10 +7,10 @@ import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
-public class Y_EntitySlime extends EntitySlime
+public class LavaEntitySlime extends EntitySlime
 {
 
-    public Y_EntitySlime(World world)
+    public LavaEntitySlime(World world)
     {
         super(world);
     }
