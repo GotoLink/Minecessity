@@ -2,6 +2,7 @@ package mods.minecessity;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
@@ -15,7 +16,10 @@ public class GuiParticleBlock extends GuiScreen
 		currentTile = tile;
 		type = tile.particlesType;
     }
-    @Override
+    public GuiParticleBlock(World world, int x, int y, int z) {
+		this((TileEntityParticleBlock) world.getBlockTileEntity(x, y, z));
+	}
+	@Override
 	public void initGui()
 	{
 		buttonList.clear();

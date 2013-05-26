@@ -17,8 +17,6 @@ public class CommonProxy implements IGuiHandler{
 			int x, int y, int z) {
 		if(ID==CRAFT_GUI_ID)
 			return new PortableContainerWorkbench(player.inventory, world, x, y, z);
-		else if(ID==PARTICLE_GUI)
-			return null;
 		else
 			return null;
 	}
@@ -29,7 +27,7 @@ public class CommonProxy implements IGuiHandler{
 		if(ID==CRAFT_GUI_ID)
 			return new Y_GuiCrafting(player.inventory, world, x, y, z);
 		else if(ID==PARTICLE_GUI)
-			return new GuiParticleBlock((TileEntityParticleBlock)world.getBlockTileEntity(x, y, z));
+			return new GuiParticleBlock(world,x, y, z);
 		else
 			return null;
 	}

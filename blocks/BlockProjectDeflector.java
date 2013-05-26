@@ -33,10 +33,9 @@ public class BlockProjectDeflector extends Block
 	public void updateTick(World world, int i, int j, int k, Random random)
     {
 		super.updateTick(world,i,j,k,random);
-		if(!world.isRemote)
-			deflectProjectiles(world,i,j,k);
+		deflectProjectiles(world,i,j,k);
     }
-    @SideOnly(Side.CLIENT)
+
 	public void deflectProjectiles(World world, int i, int j, int k)
 	{
 		int p = 16;
