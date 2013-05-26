@@ -1,1 +1,0 @@
-package mods.minecessity.blocks;import java.util.Random;import mods.minecessity.Minecessity;public class BlockChair extends MagicBlock{    public BlockChair(int i,int j,int k)    {		super(i,j,k);		setBlockBounds(0.12F,0F,0.12F,0.87F,0.55F,0.87F);    }}

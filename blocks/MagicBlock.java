@@ -2,12 +2,9 @@ package mods.minecessity.blocks;
 
 import java.util.Random;
 
-import mods.minecessity.Minecessity;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
@@ -34,43 +31,43 @@ public class MagicBlock extends Block {
 		int meta =access.getBlockMetadata(i, j, k);
 		switch(meta){
 		case 4:
-			if(!access.isAirBlock(i, j-1, k))
+			if(!access.isAirBlock(i, j-1, k)&& !(Block.blocksList[access.getBlockId(i, j-1, k)] instanceof MagicBlock))
 				return Block.blocksList[access.getBlockId(i,j-1,k)].getBlockTexture(access, i,j-1,k, side);
 			break;
 		case 5:
-			if(!access.isAirBlock(i, j+1, k))
+			if(!access.isAirBlock(i, j+1, k)&& !(Block.blocksList[access.getBlockId(i, j+1, k)] instanceof MagicBlock))
 				return Block.blocksList[access.getBlockId(i,j+1,k)].getBlockTexture(access, i,j+1,k, side);
 			break;
 		case 6:	
-			if(!access.isAirBlock(i-1, j, k))
+			if(!access.isAirBlock(i-1, j, k) && !(Block.blocksList[access.getBlockId(i-1, j, k)] instanceof MagicBlock))
 				return Block.blocksList[access.getBlockId(i-1,j,k)].getBlockTexture(access, i-1,j,k, side);
 			break;
 		case 7:
-			if(!access.isAirBlock(i+1, j, k))
+			if(!access.isAirBlock(i+1, j, k)&& !(Block.blocksList[access.getBlockId(i+1, j, k)] instanceof MagicBlock))
 				return Block.blocksList[access.getBlockId(i+1,j,k)].getBlockTexture(access, i+1,j,k, side);
 			break;
 		case 8:
-			if(!access.isAirBlock(i, j, k-1))
+			if(!access.isAirBlock(i, j, k-1)&& !(Block.blocksList[access.getBlockId(i, j, k-1)] instanceof MagicBlock))
 				return Block.blocksList[access.getBlockId(i,j,k-1)].getBlockTexture(access, i,j,k-1, side);
 			break;
 		case 9:
-			if(!access.isAirBlock(i, j, k+1))
+			if(!access.isAirBlock(i, j, k+1)&& !(Block.blocksList[access.getBlockId(i, j, k+1)] instanceof MagicBlock))
 				return Block.blocksList[access.getBlockId(i,j,k+1)].getBlockTexture(access, i,j,k+1, side);
 			break;
 		case 10:
-			if(!access.isAirBlock(i-1, j, k-1))
+			if(!access.isAirBlock(i-1, j, k-1)&& !(Block.blocksList[access.getBlockId(i-1, j, k-1)] instanceof MagicBlock))
 				return Block.blocksList[access.getBlockId(i-1, j, k-1)].getBlockTexture(access, i-1, j, k-1, side);
 			break;
 		case 11:
-			if(!access.isAirBlock(i+1, j, k+1))
+			if(!access.isAirBlock(i+1, j, k+1)&& !(Block.blocksList[access.getBlockId(i+1, j, k+1)] instanceof MagicBlock))
 				return Block.blocksList[access.getBlockId(i+1, j, k+1)].getBlockTexture(access, i+1, j, k+1, side);
 			break;
 		case 12:
-			if(!access.isAirBlock(i-1, j, k+1))
+			if(!access.isAirBlock(i-1, j, k+1)&& !(Block.blocksList[access.getBlockId(i-1, j, k+1)] instanceof MagicBlock))
 				return Block.blocksList[access.getBlockId(i-1,j,k+1)].getBlockTexture(access, i-1,j,k+1, side);
 			break;
 		case 13:
-			if(!access.isAirBlock(i+1, j, k-1))
+			if(!access.isAirBlock(i+1, j, k-1)&& !(Block.blocksList[access.getBlockId(i+1, j, k-1)] instanceof MagicBlock))
 				return Block.blocksList[access.getBlockId(i+1, j, k-1)].getBlockTexture(access, i+1, j, k-1, side);
 			break;
 		case 0:case 1:case 2:case 3:default:
@@ -104,15 +101,15 @@ public class MagicBlock extends Block {
 	public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer entityplayer, int par6, float par7, float par8, float par9)
     {
 		ItemStack stack = entityplayer.inventory.getCurrentItem();
-		if(stack!=null)
+		if(stack!=null && stack.getItem() instanceof ItemFood)
 		{
-			Item item = stack.getItem();
-			if(item instanceof ItemFood)
-			{
-				entityplayer.heal(((ItemFood)item).getHealAmount()*2);
-				stack.stackSize--;
-				return false;
-			}
+			entityplayer.heal(((ItemFood)stack.getItem()).getHealAmount()*2);
+			stack.stackSize--;
+			return false;
+		}
+		else
+		{
+			this.onBlockClicked(world, i, j, k, entityplayer);
 		}
         return true;
     }
@@ -127,4 +124,8 @@ public class MagicBlock extends Block {
 		world.setBlockMetadataWithNotify(i,j,k,meta,3);
 		world.notifyBlocksOfNeighborChange(i,j,k,blockID);
     }
+	public MagicBlock setBounds(float par1, float par2, float par3, float par4, float par5, float par6){
+		this.setBlockBounds(par1, par2, par3, par4, par5, par6);
+		return this;
+	}
 }

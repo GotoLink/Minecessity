@@ -1,6 +1,5 @@
 package mods.minecessity;
 
-import mods.minecessity.blocks.BlockChair;
 import mods.minecessity.blocks.BlockMobAttract;
 import mods.minecessity.blocks.BlockParticle;
 import mods.minecessity.blocks.BlockProjectDeflector;
@@ -30,7 +29,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-@Mod(modid = "minecessity",name="Minecessity",version="alpha")
+@Mod(modid = "minecessity",name="Minecessity",version="0.1")
 @NetworkMod(clientSideRequired=true,serverSideRequired=false)
 public class Minecessity 
 {
@@ -80,7 +79,7 @@ public class Minecessity
     	projDeflector = new BlockProjectDeflector(deflectorId).setHardness(0.85F).setUnlocalizedName("minecessity:deflector");
     	particleBlock = new BlockParticle(particleBlockId).setHardness(0.4F).setUnlocalizedName("minecessity:particleBlock");
     	table = new MagicBlock(tableBlockId,proxy.rendererTable,tableItemId);
-    	chair = new BlockChair(chairBlockId,proxy.rendererChair,chairItemId);
+    	chair = new MagicBlock(chairBlockId,proxy.rendererChair,chairItemId).setBounds(0.12F,0F,0.12F,0.87F,0.55F,0.87F);
     	ceilLamp = new MagicBlock(ceilLampBlockId,proxy.rendererCeilLamp,ceilLampItemId).setLightValue(1F);
     	
     	tableItem = new MagicItem(tableItemId,tableBlockId).setUnlocalizedName("minecessity:table");
@@ -93,6 +92,7 @@ public class Minecessity
     	registerBlocksItemsRecipes();
     	proxy.registerRenderer();
     	EntityRegistry.registerModEntity(LavaEntitySlime.class, "YSlime",1,this,40,1,true);
+    	EntityRegistry.registerModEntity(EntityLightBullet.class, "Bullet",2,this,40,1,true);
 		EntityRegistry.addSpawn(LavaEntitySlime.class, 1, 1, 5, EnumCreatureType.monster,WorldType.base12Biomes);
 		
 		GameRegistry.registerTileEntity(TileEntityParticleBlock.class,"Particle Block Tile Entity");
