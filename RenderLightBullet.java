@@ -16,20 +16,20 @@ public class RenderLightBullet extends Render
         super();
     }
 
-    public void renderBullet(EntityLightBullet bullet, double d, double d1, double d2, float f, float f1)
+    public void renderBullet(EntityLightBullet bullet, double d, double d1, double d2)
     {
-		loadTexture("haha");
+		loadTexture("/mods/minecessity/textures/dummy.png");
         GL11.glPushMatrix();
         GL11.glTranslatef((float)d/4F, (float)d1/4F, (float)d2/4F);
 		
 		GL11.glDepthMask(false);
-		GL11.glEnable(2896 /*GL_LIGHTING*/);
+		GL11.glEnable(GL11.GL_LIGHTING);
         Tessellator tessellator = Tessellator.instance;
         tessellator.startDrawingQuads();
 		GL11.glDisable(32826 /*GL_RESCALE_NORMAL_EXT*/);
         addCube(tessellator,-0.01F,-0.01F,-0.01F,0.01F,0.01F,0.01F,0D,0D,0D,0D);
         tessellator.draw();
-		GL11.glDisable(2896 /*GL_LIGHTING*/);
+		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glEnable(32826 /*GL_RESCALE_NORMAL_EXT*/);
 		GL11.glDepthMask(true);
 		
@@ -38,7 +38,7 @@ public class RenderLightBullet extends Render
     @Override
     public void doRender(Entity entity, double d, double d1, double d2, float f, float f1)
     {
-        renderBullet((EntityLightBullet)entity, d, d1, d2, f, f1);
+        renderBullet((EntityLightBullet)entity, d, d1, d2);
     }
 	
 	public void addCube(Tessellator tessellator, float i1, float j1, float k1, float i2, float j2, float k2, double tX1, double tY1, double tX2, double tY2)

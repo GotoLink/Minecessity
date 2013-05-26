@@ -47,16 +47,6 @@ public class EntityLightBullet extends EntityThrowable
 		{
 			doParticles(worldObj,particlesType);
 		}
-		/*
-		setPosition(posX,posY,posZ);
-		moveEntity(motionX,motionY,motionZ);
-		motionX*=0.96;
-		motionZ*=0.96;
-		motionY-=0.03;
-		if(onGround)
-		{
-			motionX*=0.75F ; motionZ*=0.75F ;
-		}*/
 		
 		if(!worldObj.isRemote && ticksExisted>maxLife) 
 			setDead();
@@ -68,7 +58,7 @@ public class EntityLightBullet extends EntityThrowable
 		{
 			String s = "";
 			int x = new Random().nextInt(3);
-			switch(particlesType){
+			switch(type){
 			case 0: /*Fire*/
 				s=(x==0?"flame":x==1?"lava":"largesmoke");
 				break;
