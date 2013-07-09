@@ -1,7 +1,8 @@
-package mods.minecessity;
+package assets.minecessity;
 
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.entity.Entity;
 
 import org.lwjgl.opengl.GL11;
@@ -18,7 +19,6 @@ public class RenderLightBullet extends Render
 
     public void renderBullet(EntityLightBullet bullet, double d, double d1, double d2)
     {
-		loadTexture("/mods/minecessity/textures/dummy.png");
         GL11.glPushMatrix();
         GL11.glTranslatef((float)d/4F, (float)d1/4F, (float)d2/4F);
 		
@@ -97,5 +97,11 @@ public class RenderLightBullet extends Render
 		tessellator.addVertexWithUV(i2, j2, k1, tX2, tY1);
 		tessellator.addVertexWithUV(i1, j2, k2, tX1, tY2);
 		tessellator.addVertexWithUV(i1, j2, k1, tX1, tY1);
+	}
+
+	@Override
+	protected ResourceLocation func_110775_a(Entity entity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

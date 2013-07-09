@@ -1,4 +1,4 @@
-package mods.minecessity;
+package assets.minecessity;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;

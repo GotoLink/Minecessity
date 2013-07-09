@@ -1,9 +1,10 @@
-package mods.minecessity.blocks;
+package assets.minecessity.blocks;
 
 import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
@@ -23,7 +24,6 @@ public class MagicBlock extends Block {
 		this.setHardness(0.5F);
 		this.type=renderType;
 		this.idDrop=drop;
-		this.setUnlocalizedName("wood");
     }
 	@SideOnly(Side.CLIENT)
     public Icon getBlockTexture(IBlockAccess access, int i, int j, int k, int side)
@@ -74,6 +74,10 @@ public class MagicBlock extends Block {
 			return Block.planks.getIcon(side, meta);
 		}
 		return Block.planks.getIcon(side, meta);
+    }
+	@SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister par1IconRegister)
+    {
     }
 	
 	@Override

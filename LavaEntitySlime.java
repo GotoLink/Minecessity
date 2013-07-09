@@ -1,4 +1,4 @@
-package mods.minecessity;
+package assets.minecessity;
 
 import java.util.Random;
 

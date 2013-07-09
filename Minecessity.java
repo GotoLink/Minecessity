@@ -1,15 +1,5 @@
-package mods.minecessity;
+package assets.minecessity;
 
-import mods.minecessity.blocks.BlockMobAttract;
-import mods.minecessity.blocks.BlockParticle;
-import mods.minecessity.blocks.BlockProjectDeflector;
-import mods.minecessity.blocks.BlockTempTorch;
-import mods.minecessity.blocks.MagicBlock;
-import mods.minecessity.items.ItemCactusStick;
-import mods.minecessity.items.ItemCeilLamp;
-import mods.minecessity.items.ItemParticleGun;
-import mods.minecessity.items.ItemPrtbWorkBence;
-import mods.minecessity.items.MagicItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.entity.EnumCreatureType;
@@ -17,10 +7,19 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.WorldType;
 import net.minecraftforge.common.Configuration;
+import assets.minecessity.blocks.BlockMobAttract;
+import assets.minecessity.blocks.BlockParticle;
+import assets.minecessity.blocks.BlockProjectDeflector;
+import assets.minecessity.blocks.BlockTempTorch;
+import assets.minecessity.blocks.MagicBlock;
+import assets.minecessity.items.ItemCactusStick;
+import assets.minecessity.items.ItemCeilLamp;
+import assets.minecessity.items.ItemParticleGun;
+import assets.minecessity.items.ItemPrtbWorkBence;
+import assets.minecessity.items.MagicItem;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Init;
+import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -35,7 +34,7 @@ public class Minecessity
 {
 	@Instance("minecessity")
 	public static Minecessity instance;
-	@SidedProxy(clientSide="mods.minecessity.ClientProxy",serverSide="mods.minecessity.CommonProxy")
+	@SidedProxy(clientSide="assets.minecessity.ClientProxy",serverSide="assets.minecessity.CommonProxy")
 	public static CommonProxy proxy;
 	public static Block table,mobAttractor,projDeflector,particleBlock,chair,ceilLamp;
 	public static BlockTorch tempTorch;
@@ -46,7 +45,7 @@ public class Minecessity
 	chairItemId,ceilLampItemId,deflectorEffectiveRange,slimeSpawnLimit;
 	private Configuration config;
 	
-	@PreInit
+	@EventHandler
 	public void prepareProps(FMLPreInitializationEvent event)
 	{
 		config =new Configuration(event.getSuggestedConfigurationFile());
@@ -71,23 +70,23 @@ public class Minecessity
 		if(config.hasChanged())
 			config.save();
 	}
-	@Init
+	@EventHandler
     public void load(FMLInitializationEvent event)
     {
-    	mobAttractor = new BlockMobAttract(mobAttractorId).setHardness(0.5F).setUnlocalizedName("minecessity:mobAttractor");
-    	tempTorch = (BlockTorch)(new BlockTempTorch(temporaryTorchId)).setLightValue(0.9375F).setUnlocalizedName("torch");
-    	projDeflector = new BlockProjectDeflector(deflectorId).setHardness(0.85F).setUnlocalizedName("minecessity:deflector");
-    	particleBlock = new BlockParticle(particleBlockId).setHardness(0.4F).setUnlocalizedName("minecessity:particleBlock");
+    	mobAttractor = new BlockMobAttract(mobAttractorId).setHardness(0.5F).setUnlocalizedName("minecessity:mobAttractor").func_111022_d("minecessity:mobAttractor");
+    	tempTorch = (BlockTorch)(new BlockTempTorch(temporaryTorchId)).setLightValue(0.9375F).setUnlocalizedName("minecessity:temptorch");
+    	projDeflector = new BlockProjectDeflector(deflectorId).setHardness(0.85F).setUnlocalizedName("minecessity:deflector").func_111022_d("minecessity:deflector");
+    	particleBlock = new BlockParticle(particleBlockId).setHardness(0.4F).setUnlocalizedName("minecessity:particleBlock").func_111022_d("minecessity:particleBlock");
     	table = new MagicBlock(tableBlockId,proxy.rendererTable,tableItemId);
     	chair = new MagicBlock(chairBlockId,proxy.rendererChair,chairItemId).setBounds(0.12F,0F,0.12F,0.87F,0.55F,0.87F);
     	ceilLamp = new MagicBlock(ceilLampBlockId,proxy.rendererCeilLamp,ceilLampItemId).setLightValue(1F);
     	
-    	tableItem = new MagicItem(tableItemId,tableBlockId).setUnlocalizedName("minecessity:table");
-    	cactusStick = new ItemCactusStick(cactusPickerId).setUnlocalizedName("minecessity:cactusPicker");
-    	portableWorkBench = new ItemPrtbWorkBence(portableWorkBenchId).setUnlocalizedName("minecessity:portableWorkBench");
-    	particleGun = new ItemParticleGun(particleGunId).setUnlocalizedName("minecessity:particleGun");
-    	chairItem = new MagicItem(chairItemId,chairBlockId).setUnlocalizedName("minecessity:chair");
-    	ceilLampItem = new ItemCeilLamp(ceilLampItemId,ceilLampBlockId).setUnlocalizedName("minecessity:ceilLamp");
+    	tableItem = new MagicItem(tableItemId,tableBlockId).setUnlocalizedName("minecessity:table").func_111206_d("minecessity:table");
+    	cactusStick = new ItemCactusStick(cactusPickerId).setUnlocalizedName("minecessity:cactusPicker").func_111206_d("minecessity:cactusPicker");
+    	portableWorkBench = new ItemPrtbWorkBence(portableWorkBenchId).setUnlocalizedName("minecessity:portableWorkBench").func_111206_d("minecessity:portableWorkBench");
+    	particleGun = new ItemParticleGun(particleGunId).setUnlocalizedName("minecessity:particleGun").func_111206_d("minecessity:particleGun");
+    	chairItem = new MagicItem(chairItemId,chairBlockId).setUnlocalizedName("minecessity:chair").func_111206_d("minecessity:chair");
+    	ceilLampItem = new ItemCeilLamp(ceilLampItemId,ceilLampBlockId).setUnlocalizedName("minecessity:ceilLamp").func_111206_d("minecessity:ceilLamp");
     	
     	registerBlocksItemsRecipes();
     	proxy.registerRenderer();
@@ -95,7 +94,6 @@ public class Minecessity
     	EntityRegistry.registerModEntity(EntityLightBullet.class, "Bullet",2,this,40,1,true);
 		EntityRegistry.addSpawn(LavaEntitySlime.class, 1, 1, 5, EnumCreatureType.monster,WorldType.base12Biomes);
 		
-		GameRegistry.registerTileEntity(TileEntityParticleBlock.class,"Particle Block Tile Entity");
 		NetworkRegistry.instance().registerGuiHandler(this, proxy);
 	}
 	

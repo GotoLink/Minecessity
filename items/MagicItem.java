@@ -1,4 +1,4 @@
-package mods.minecessity.items;
+package assets.minecessity.items;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;

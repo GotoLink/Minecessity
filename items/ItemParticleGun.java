@@ -1,6 +1,9 @@
-package mods.minecessity.items;
+package assets.minecessity.items;
 
-import mods.minecessity.EntityLightBullet;
+import java.util.Random;
+
+import assets.minecessity.EntityLightBullet;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

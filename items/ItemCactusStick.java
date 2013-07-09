@@ -1,8 +1,9 @@
-package mods.minecessity.items;
+package assets.minecessity.items;
 
 import java.util.List;
 
-import mods.minecessity.Minecessity;
+import assets.minecessity.Minecessity;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;

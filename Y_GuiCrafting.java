@@ -1,6 +1,7 @@
-package mods.minecessity;
+package assets.minecessity;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.world.World;
 
@@ -11,7 +12,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class Y_GuiCrafting extends GuiContainer
 {
-
+	private static final ResourceLocation guiLoc = new ResourceLocation("textures/gui/container/crafting_table.png");
     public Y_GuiCrafting(InventoryPlayer inventoryplayer, World world, int i, int j, int k)
     {
         super(new PortableContainerWorkbench(inventoryplayer, world, i, j, k));
@@ -20,7 +21,7 @@ public class Y_GuiCrafting extends GuiContainer
     public void onGuiClosed()
     {
         super.onGuiClosed();
-        inventorySlots.onCraftGuiClosed(mc.thePlayer);
+        inventorySlots.onContainerClosed(mc.thePlayer);
     }
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
@@ -32,7 +33,8 @@ public class Y_GuiCrafting extends GuiContainer
     protected void drawGuiContainerBackgroundLayer(float f,int par1, int par2)
     {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        mc.renderEngine.bindTexture("/gui/crafting.png");
+        //mc.renderEngine.bindTexture("/gui/crafting.png");
+        this.mc.func_110434_K().func_110577_a(guiLoc);
         int j = (width - xSize) / 2;
         int k = (height - ySize) / 2;
         drawTexturedModalRect(j, k, 0, 0, xSize, ySize);

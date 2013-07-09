@@ -1,6 +1,6 @@
-package mods.minecessity.items;
+package assets.minecessity.items;
 
-import mods.minecessity.Minecessity;
+import assets.minecessity.Minecessity;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
