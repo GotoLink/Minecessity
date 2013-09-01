@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
@@ -64,6 +65,19 @@ public class EntityLightBullet extends EntityThrowable
 		if(!this.worldObj.isRemote && this.ticksExisted>this.maxLife) 
 			setDead();
         super.onUpdate();
+    }
+    @Override
+    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
+    {
+    	super.writeEntityToNBT(par1NBTTagCompound);
+    	par1NBTTagCompound.setInteger("type", this.particlesType);
+    	
+    }
+    @Override
+    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
+    {
+    	super.readEntityFromNBT(par1NBTTagCompound);
+    	this.particlesType = par1NBTTagCompound.getInteger("type");
     }
 	@Override
     public boolean canBeCollidedWith()

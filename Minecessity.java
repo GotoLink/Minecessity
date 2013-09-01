@@ -50,20 +50,20 @@ public class Minecessity
 	{
 		config =new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
-		tableBlockId =config.get("block","Table ID",410).getInt();
-		mobAttractorId =config.get("block","Mob Attractor ID",411).getInt();
-		temporaryTorchId =config.get("block","Temporary Torch ID",412).getInt();
-		deflectorId =config.get("block","Deflector ID",413).getInt();
-		particleBlockId =config.get("block","Particle block ID",414).getInt();
-		chairBlockId =config.get("block","Chair ID",415).getInt();
-		ceilLampBlockId =config.get("block","Ceiling Lamp ID",416).getInt();
+		tableBlockId =config.getBlock("Table ID",410).getInt();
+		mobAttractorId =config.getBlock("Mob Attractor ID",411).getInt();
+		temporaryTorchId =config.getBlock("Temporary Torch ID",412).getInt();
+		deflectorId =config.getBlock("Deflector ID",413).getInt();
+		particleBlockId =config.getBlock("Particle block ID",414).getInt();
+		chairBlockId =config.getBlock("Chair ID",415).getInt();
+		ceilLampBlockId =config.getBlock("Ceiling Lamp ID",416).getInt();
 		
-		tableItemId =config.get("item","Table ID",26508).getInt();
-		cactusPickerId =config.get("item","Cactus Picker ID",26509).getInt();
-		portableWorkBenchId =config.get("item","Portable Workbench ID",26510).getInt();
-		particleGunId =config.get("item","Particles Gun ID",26511).getInt();
-		chairItemId =config.get("item","Chair ID",26512).getInt();
-		ceilLampItemId =config.get("item","Ceiling Lamp ID",26513).getInt();
+		tableItemId =config.getItem("Table ID",26508).getInt();
+		cactusPickerId =config.getItem("Cactus Picker ID",26509).getInt();
+		portableWorkBenchId =config.getItem("Portable Workbench ID",26510).getInt();
+		particleGunId =config.getItem("Particles Gun ID",26511).getInt();
+		chairItemId =config.getItem("Chair ID",26512).getInt();
+		ceilLampItemId =config.getItem("Ceiling Lamp ID",26513).getInt();
 		
 		deflectorEffectiveRange =config.get("general","Deflector Effective Range",8).getInt();
 		slimeSpawnLimit=config.get("general","Slime spawn limit by chunk",3).getInt();
