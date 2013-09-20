@@ -34,7 +34,7 @@ public class Y_GuiCrafting extends GuiContainer
     {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         //mc.renderEngine.bindTexture("/gui/crafting.png");
-        this.mc.func_110434_K().func_110577_a(guiLoc);
+        this.mc.getTextureManager().bindTexture(guiLoc);
         int j = (width - xSize) / 2;
         int k = (height - ySize) / 2;
         drawTexturedModalRect(j, k, 0, 0, xSize, ySize);

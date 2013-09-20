@@ -73,20 +73,20 @@ public class Minecessity
 	@EventHandler
     public void load(FMLInitializationEvent event)
     {
-    	mobAttractor = new BlockMobAttract(mobAttractorId).setHardness(0.5F).setUnlocalizedName("minecessity:mobAttractor").func_111022_d("minecessity:mobAttractor");
+    	mobAttractor = new BlockMobAttract(mobAttractorId).setHardness(0.5F).setUnlocalizedName("minecessity:mobAttractor").setTextureName("minecessity:mobAttractor");
     	tempTorch = (BlockTorch)(new BlockTempTorch(temporaryTorchId)).setLightValue(0.9375F).setUnlocalizedName("minecessity:temptorch");
-    	projDeflector = new BlockProjectDeflector(deflectorId).setHardness(0.85F).setUnlocalizedName("minecessity:deflector").func_111022_d("minecessity:deflector");
-    	particleBlock = new BlockParticle(particleBlockId).setHardness(0.4F).setUnlocalizedName("minecessity:particleBlock").func_111022_d("minecessity:particleBlock");
+    	projDeflector = new BlockProjectDeflector(deflectorId).setHardness(0.85F).setUnlocalizedName("minecessity:deflector").setTextureName("minecessity:deflector");
+    	particleBlock = new BlockParticle(particleBlockId).setHardness(0.4F).setUnlocalizedName("minecessity:particleBlock").setTextureName("minecessity:particleBlock");
     	table = new MagicBlock(tableBlockId,proxy.rendererTable,tableItemId);
     	chair = new MagicBlock(chairBlockId,proxy.rendererChair,chairItemId).setBounds(0.12F,0F,0.12F,0.87F,0.55F,0.87F);
     	ceilLamp = new MagicBlock(ceilLampBlockId,proxy.rendererCeilLamp,ceilLampItemId).setLightValue(1F);
     	
-    	tableItem = new MagicItem(tableItemId,tableBlockId).setUnlocalizedName("minecessity:table").func_111206_d("minecessity:table");
-    	cactusStick = new ItemCactusStick(cactusPickerId).setUnlocalizedName("minecessity:cactusPicker").func_111206_d("minecessity:cactusPicker");
-    	portableWorkBench = new ItemPrtbWorkBence(portableWorkBenchId).setUnlocalizedName("minecessity:portableWorkBench").func_111206_d("minecessity:portableWorkBench");
-    	particleGun = new ItemParticleGun(particleGunId).setUnlocalizedName("minecessity:particleGun").func_111206_d("minecessity:particleGun");
-    	chairItem = new MagicItem(chairItemId,chairBlockId).setUnlocalizedName("minecessity:chair").func_111206_d("minecessity:chair");
-    	ceilLampItem = new ItemCeilLamp(ceilLampItemId,ceilLampBlockId).setUnlocalizedName("minecessity:ceilLamp").func_111206_d("minecessity:ceilLamp");
+    	tableItem = new MagicItem(tableItemId,tableBlockId).setUnlocalizedName("minecessity:table").setTextureName("minecessity:table");
+    	cactusStick = new ItemCactusStick(cactusPickerId).setUnlocalizedName("minecessity:cactusPicker").setTextureName("minecessity:cactusPicker");
+    	portableWorkBench = new ItemPrtbWorkBence(portableWorkBenchId).setUnlocalizedName("minecessity:portableWorkBench").setTextureName("minecessity:portableWorkBench");
+    	particleGun = new ItemParticleGun(particleGunId).setUnlocalizedName("minecessity:particleGun").setTextureName("minecessity:particleGun");
+    	chairItem = new MagicItem(chairItemId,chairBlockId).setUnlocalizedName("minecessity:chair").setTextureName("minecessity:chair");
+    	ceilLampItem = new ItemCeilLamp(ceilLampItemId,ceilLampBlockId).setUnlocalizedName("minecessity:ceilLamp").setTextureName("minecessity:ceilLamp");
     	
     	registerBlocksItemsRecipes();
     	proxy.registerRenderer();

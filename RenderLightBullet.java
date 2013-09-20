@@ -100,8 +100,7 @@ public class RenderLightBullet extends Render
 	}
 
 	@Override
-	protected ResourceLocation func_110775_a(Entity entity) {
-		// TODO Auto-generated method stub
+	protected ResourceLocation getEntityTexture(Entity entity) {
 		return null;
 	}
 }

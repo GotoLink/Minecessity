@@ -18,7 +18,7 @@ public class BlockTempTorch extends BlockTorch
     public BlockTempTorch(int i)
     {
         super(i);
-        func_111022_d("torch_on");
+        setTextureName("torch_on");
     }
     @Override
 	public int tickRate(World world)
