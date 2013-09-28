@@ -43,12 +43,11 @@ public class Minecessity
 	public static int tableBlockId,mobAttractorId,temporaryTorchId,deflectorId,particleBlockId,
 	chairBlockId,ceilLampBlockId,tableItemId,cactusPickerId,portableWorkBenchId,particleGunId,
 	chairItemId,ceilLampItemId,deflectorEffectiveRange,slimeSpawnLimit;
-	private Configuration config;
 	
 	@EventHandler
 	public void prepareProps(FMLPreInitializationEvent event)
 	{
-		config =new Configuration(event.getSuggestedConfigurationFile());
+		Configuration config =new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
 		tableBlockId =config.getBlock("Table ID",410).getInt();
 		mobAttractorId =config.getBlock("Mob Attractor ID",411).getInt();
