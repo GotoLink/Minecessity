@@ -12,7 +12,8 @@ public class PortableContainerWorkbench extends ContainerWorkbench
         super(inventoryplayer, world, i, j, k);
     }
 
-    public boolean canInteractWith(EntityPlayer par1EntityPlayer)
+    @Override
+	public boolean canInteractWith(EntityPlayer par1EntityPlayer)
     {
     	return true;
     }

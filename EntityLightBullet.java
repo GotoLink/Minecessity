@@ -99,7 +99,8 @@ public class EntityLightBullet extends EntityThrowable
     {
 		return false;
     }
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public float getShadowSize()
     {
         return 0.0F;

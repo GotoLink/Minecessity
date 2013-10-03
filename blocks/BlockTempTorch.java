@@ -2,16 +2,11 @@ package assets.minecessity.blocks;
 
 import java.util.Random;
 
-import assets.minecessity.Minecessity;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.block.BlockTorch;
-import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import assets.minecessity.Minecessity;
 
 public class BlockTempTorch extends BlockTorch
 {

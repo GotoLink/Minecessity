@@ -13,8 +13,6 @@ import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockProjectDeflector extends Block
 {
@@ -47,8 +45,7 @@ public class BlockProjectDeflector extends Block
 				Entity e = (Entity)list.get(p1);
 				if(e instanceof IProjectile || e instanceof EntityFireball /*|| e instanceof EntityFX*/)
 				{
-					int p3 = new Random().nextInt(5);
-					double xM = 0;
+					/*double xM = 0;
 					double yM = 0;
 					double zM = 0;
 					switch(p3){
@@ -58,7 +55,7 @@ public class BlockProjectDeflector extends Block
 						case 3:{xM=e.motionY ; yM=e.motionZ ; zM=e.motionX ;break;}
 						case 4:{xM=e.motionZ ; yM=e.motionX ; zM=e.motionY ;break;}
 					}
-					//e.setVelocity(xM,yM,zM);
+					e.setVelocity(xM,yM,zM);*/
 				}
 				if(e instanceof EntityLightningBolt)
 				{

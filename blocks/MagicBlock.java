@@ -25,6 +25,7 @@ public class MagicBlock extends Block {
 		this.type=renderType;
 		this.idDrop=drop;
     }
+	@Override
 	@SideOnly(Side.CLIENT)
     public Icon getBlockTexture(IBlockAccess access, int i, int j, int k, int side)
     {
@@ -75,6 +76,7 @@ public class MagicBlock extends Block {
 		}
 		return Block.planks.getIcon(side, meta);
     }
+	@Override
 	@SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {

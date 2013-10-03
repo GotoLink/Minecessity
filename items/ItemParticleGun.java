@@ -1,14 +1,11 @@
 package assets.minecessity.items;
 
-import java.util.Random;
-
-import assets.minecessity.EntityLightBullet;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import assets.minecessity.EntityLightBullet;
 
 public class ItemParticleGun extends Item
 {
