@@ -27,10 +27,9 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 
 @Mod(modid = "minecessity", name = "Minecessity", version = "0.1")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false)
+@NetworkMod(clientSideRequired = true)
 public class Minecessity {
 	@Instance("minecessity")
 	public static Minecessity instance;
@@ -41,30 +40,7 @@ public class Minecessity {
 	public static Item tableItem, chairItem, ceilLampItem;
 	public static Item cactusStick, portableWorkBench, particleGun;
 	public static int tableBlockId, mobAttractorId, temporaryTorchId, deflectorId, particleBlockId, chairBlockId, ceilLampBlockId, tableItemId, cactusPickerId, portableWorkBenchId, particleGunId,
-	chairItemId, ceilLampItemId, deflectorEffectiveRange, slimeSpawnLimit;
-
-	@EventHandler
-	public void prepareProps(FMLPreInitializationEvent event) {
-		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
-		config.load();
-		tableBlockId = config.getBlock("Table ID", 410).getInt();
-		mobAttractorId = config.getBlock("Mob Attractor ID", 411).getInt();
-		temporaryTorchId = config.getBlock("Temporary Torch ID", 412).getInt();
-		deflectorId = config.getBlock("Deflector ID", 413).getInt();
-		particleBlockId = config.getBlock("Particle block ID", 414).getInt();
-		chairBlockId = config.getBlock("Chair ID", 415).getInt();
-		ceilLampBlockId = config.getBlock("Ceiling Lamp ID", 416).getInt();
-		tableItemId = config.getItem("Table ID", 26508).getInt();
-		cactusPickerId = config.getItem("Cactus Picker ID", 26509).getInt();
-		portableWorkBenchId = config.getItem("Portable Workbench ID", 26510).getInt();
-		particleGunId = config.getItem("Particles Gun ID", 26511).getInt();
-		chairItemId = config.getItem("Chair ID", 26512).getInt();
-		ceilLampItemId = config.getItem("Ceiling Lamp ID", 26513).getInt();
-		deflectorEffectiveRange = config.get("general", "Deflector Effective Range", 8).getInt();
-		slimeSpawnLimit = config.get("general", "Slime spawn limit by chunk", 3).getInt();
-		if (config.hasChanged())
-			config.save();
-	}
+			chairItemId, ceilLampItemId, deflectorEffectiveRange, slimeSpawnLimit;
 
 	@EventHandler
 	public void load(FMLInitializationEvent event) {
@@ -89,42 +65,55 @@ public class Minecessity {
 		NetworkRegistry.instance().registerGuiHandler(this, proxy);
 	}
 
+	@EventHandler
+	public void prepareProps(FMLPreInitializationEvent event) {
+		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
+		config.load();
+		tableBlockId = config.getBlock("Table ID", 410).getInt();
+		mobAttractorId = config.getBlock("Mob Attractor ID", 411).getInt();
+		temporaryTorchId = config.getBlock("Temporary Torch ID", 412).getInt();
+		deflectorId = config.getBlock("Deflector ID", 413).getInt();
+		particleBlockId = config.getBlock("Particle block ID", 414).getInt();
+		chairBlockId = config.getBlock("Chair ID", 415).getInt();
+		ceilLampBlockId = config.getBlock("Ceiling Lamp ID", 416).getInt();
+		tableItemId = config.getItem("Table ID", 26508).getInt();
+		cactusPickerId = config.getItem("Cactus Picker ID", 26509).getInt();
+		portableWorkBenchId = config.getItem("Portable Workbench ID", 26510).getInt();
+		particleGunId = config.getItem("Particles Gun ID", 26511).getInt();
+		chairItemId = config.getItem("Chair ID", 26512).getInt();
+		ceilLampItemId = config.getItem("Ceiling Lamp ID", 26513).getInt();
+		deflectorEffectiveRange = config.get("general", "Deflector Effective Range", 8).getInt();
+		slimeSpawnLimit = config.get("general", "Slime spawn limit by chunk", 3).getInt();
+		if (config.hasChanged())
+			config.save();
+	}
+
 	public void registerBlocksItemsRecipes() {
 		GameRegistry.registerItem(tableItem, "Table");
 		//GameRegistry.registerBlock(table,"Table");
-		LanguageRegistry.instance().addNameForObject(tableItem, "en_US", "Table");
 		GameRegistry.addRecipe(new ItemStack(tableItem, 1), new Object[] { "XLX", " Y ", " X ", 'X', Block.planks, 'L', Block.lever, 'Y', Item.ingotIron });
 		GameRegistry.registerItem(chairItem, "Chair");
 		//GameRegistry.registerBlock(chair,"Chair");
-		LanguageRegistry.instance().addNameForObject(chairItem, "en_US", "Chair");
 		GameRegistry.addRecipe(new ItemStack(chairItem, 1), new Object[] { " W ", " LI", " WW", 'W', Block.planks, 'L', Block.lever, 'I', Item.ingotIron });
 		GameRegistry.registerItem(ceilLampItem, "Ceiling Lamp");
 		//GameRegistry.registerBlock(ceilLamp,"Ceiling Lamp");
-		LanguageRegistry.instance().addNameForObject(ceilLampItem, "en_US", "Ceiling Lamp");
 		GameRegistry.addRecipe(new ItemStack(ceilLampItem, 1), new Object[] { " W ", " L ", "GIG", 'W', Block.planks, 'L', Block.lever, 'G', Block.glowStone, 'I', Item.ingotIron });
 		GameRegistry.registerBlock(mobAttractor, "Mob Attractor");
-		LanguageRegistry.instance().addNameForObject(mobAttractor, "en_US", "Mob Attractor");
 		GameRegistry.addRecipe(new ItemStack(mobAttractor, 1), new Object[] { "XYX", "YBY", "XYX", 'X', Block.cobblestone, 'Y', Block.sapling, 'B', Item.bone });
 		GameRegistry.registerBlock(tempTorch, "Temporary Torch");
-		LanguageRegistry.instance().addNameForObject(tempTorch, "en_US", "Temporary Torch");
 		GameRegistry.addRecipe(new ItemStack(tempTorch, 1), new Object[] { "X", 'X', Block.torchWood });
 		GameRegistry.addRecipe(new ItemStack(Block.torchWood, 1), new Object[] { "X", 'X', tempTorch });
 		GameRegistry.registerBlock(projDeflector, "Deflector");
-		LanguageRegistry.instance().addNameForObject(projDeflector, "en_US", "Deflector");
 		GameRegistry.addRecipe(new ItemStack(projDeflector, 1), new Object[] { "GLG", "B B", "GLG", 'G', Item.ingotGold, 'L', Block.lever, 'B', Block.stoneButton });
 		GameRegistry.registerBlock(particleBlock, "Particles Block");
-		LanguageRegistry.instance().addNameForObject(particleBlock, "en_US", "Particles Block");
 		GameRegistry.addRecipe(new ItemStack(particleBlock, 1), new Object[] { "CGC", "CDC", "CCC", 'C', Block.cobblestone, 'G', Block.glass, 'D', particleGun });
 		GameRegistry.registerItem(cactusStick, "Cactus Picker");
-		LanguageRegistry.instance().addNameForObject(cactusStick, "en_US", "Cactus Picker");
 		GameRegistry.addRecipe(new ItemStack(cactusStick, 1), new Object[] { "X", "X", "S", 'X', Block.cactus, 'S', Item.stick });
 		GameRegistry.registerItem(portableWorkBench, "Portable Workbench");
-		LanguageRegistry.instance().addNameForObject(portableWorkBench, "en_US", "Portable Workbench");
 		GameRegistry.addRecipe(new ItemStack(portableWorkBench, 1), new Object[] { "ILI", "RWR", "IRI", 'W', Block.workbench, 'I', Item.ingotIron, 'R', Item.redstone, 'L', Block.lever });
 		GameRegistry.registerItem(particleGun, "Particles Gun");
-		LanguageRegistry.instance().addNameForObject(particleGun, "en_US", "Particles Gun");
 		GameRegistry.addRecipe(new ItemStack(particleGun, 1), new Object[] { "123", " 45", " 6I", 'I', Item.ingotIron, '1', new ItemStack(Item.dyePowder, 1), '2', new ItemStack(Item.dyePowder, 2),
-			'3', new ItemStack(Item.dyePowder, 4), '4', new ItemStack(Item.dyePowder, 7), '5', new ItemStack(Item.dyePowder, 8), '6', new ItemStack(Item.dyePowder, 15) });
+				'3', new ItemStack(Item.dyePowder, 4), '4', new ItemStack(Item.dyePowder, 7), '5', new ItemStack(Item.dyePowder, 8), '6', new ItemStack(Item.dyePowder, 15) });
 	}
 	/*
 	 * @Deprecated public boolean OnTickInGame(Minecraft minecraft) {

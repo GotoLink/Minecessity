@@ -13,11 +13,6 @@ public class LavaEntitySlime extends EntitySlime {
 	}
 
 	@Override
-	protected int getDropItemId() {
-		return Item.slimeBall.itemID;
-	}
-
-	@Override
 	public boolean getCanSpawnHere() {
 		boolean nearLava = false;
 		int i = (int) Math.floor(posX);
@@ -36,7 +31,12 @@ public class LavaEntitySlime extends EntitySlime {
 
 	@Override
 	public int getMaxSpawnedInChunk() {
-		int i = Minecessity.instance.slimeSpawnLimit;
+		int i = Minecessity.slimeSpawnLimit;
 		return i < 0 ? 0 : i;
+	}
+
+	@Override
+	protected int getDropItemId() {
+		return Item.slimeBall.itemID;
 	}
 }

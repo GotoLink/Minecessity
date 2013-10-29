@@ -1,0 +1,12 @@
+﻿
+item.minecessity:table.name=Table
+item.minecessity:chair.name=Chair
+item.minecessity:ceilLamp.name=Ceiling Lamp
+item.minecessity:cactusPicker.name=Cactus Picker
+item.minecessity:portableWorkBench.name=Portable Workbench
+item.minecessity:particleGun.name=Particles Gun
+
+tile.minecessity:mobAttractor.name=Mob Attractor
+tile.minecessity:temptorch.name=Temporary Torch
+tile.minecessity:deflector.name=Deflector
+tile.minecessity:particleBlock.name=Particles Block
