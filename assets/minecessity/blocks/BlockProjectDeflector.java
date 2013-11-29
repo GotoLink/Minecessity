@@ -34,7 +34,7 @@ public class BlockProjectDeflector extends Block {
 
 	public void deflectProjectiles(World world, int i, int j, int k) {
 		int p = 16;
-		List list = world.getEntitiesWithinAABB(Entity.class, AxisAlignedBB.getBoundingBox(i - p, j - p, k - p, i + p, j + p, k + p));
+		List<?> list = world.getEntitiesWithinAABB(Entity.class, AxisAlignedBB.getBoundingBox(i - p, j - p, k - p, i + p, j + p, k + p));
 		if (!list.isEmpty()) {
 			for (int p1 = 0; p1 < list.size(); p1++) {
 				Entity e = (Entity) list.get(p1);

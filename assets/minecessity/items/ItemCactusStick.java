@@ -25,7 +25,7 @@ public class ItemCactusStick extends Item {
 	public void onUpdate(ItemStack itemstack, World world, Entity entity, int k, boolean flag) {
 		super.onUpdate(itemstack, world, entity, k, flag);
 		if (itemstack != null && itemstack.itemID == Minecessity.cactusStick.itemID && entity instanceof EntityPlayer) {
-			List list = world.getEntitiesWithinAABB(EntityCreature.class, ((EntityPlayer) entity).boundingBox.expand(1, 1, 1));
+			List<?> list = world.getEntitiesWithinAABB(EntityCreature.class, ((EntityPlayer) entity).boundingBox.expand(1, 1, 1));
 			if (!list.isEmpty()) {
 				for (int i = 0; i < list.size(); i++) {
 					EntityCreature entities = ((EntityCreature) list.get(i));

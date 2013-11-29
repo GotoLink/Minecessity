@@ -48,9 +48,9 @@ public class Minecessity {
 		tempTorch = (BlockTorch) (new BlockTempTorch(temporaryTorchId)).setLightValue(0.9375F).setUnlocalizedName("minecessity:temptorch");
 		projDeflector = new BlockProjectDeflector(deflectorId).setHardness(0.85F).setUnlocalizedName("minecessity:deflector").setTextureName("minecessity:deflector");
 		particleBlock = new BlockParticle(particleBlockId).setHardness(0.4F).setUnlocalizedName("minecessity:particleBlock").setTextureName("minecessity:particleBlock");
-		table = new MagicBlock(tableBlockId, proxy.rendererTable, tableItemId);
-		chair = new MagicBlock(chairBlockId, proxy.rendererChair, chairItemId).setBounds(0.12F, 0F, 0.12F, 0.87F, 0.55F, 0.87F);
-		ceilLamp = new MagicBlock(ceilLampBlockId, proxy.rendererCeilLamp, ceilLampItemId).setLightValue(1F);
+		table = new MagicBlock(tableBlockId, CommonProxy.rendererTable, tableItemId);
+		chair = new MagicBlock(chairBlockId, CommonProxy.rendererChair, chairItemId).setBounds(0.12F, 0F, 0.12F, 0.87F, 0.55F, 0.87F);
+		ceilLamp = new MagicBlock(ceilLampBlockId, CommonProxy.rendererCeilLamp, ceilLampItemId).setLightValue(1F);
 		tableItem = new MagicItem(tableItemId, tableBlockId).setUnlocalizedName("minecessity:table").setTextureName("minecessity:table");
 		cactusStick = new ItemCactusStick(cactusPickerId).setUnlocalizedName("minecessity:cactusPicker").setTextureName("minecessity:cactusPicker");
 		portableWorkBench = new ItemPrtbWorkBence(portableWorkBenchId).setUnlocalizedName("minecessity:portableWorkBench").setTextureName("minecessity:portableWorkBench");

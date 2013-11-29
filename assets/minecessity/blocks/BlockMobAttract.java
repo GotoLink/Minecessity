@@ -26,7 +26,7 @@ public class BlockMobAttract extends Block {
 
 	@Override
 	public void updateTick(World world, int i, int j, int k, Random random) {
-		List list = world.getEntitiesWithinAABB(EntityCreature.class, AxisAlignedBB.getBoundingBox(i - 8, j - 8, k - 8, i + 8, j + 8, k + 8));
+		List<?> list = world.getEntitiesWithinAABB(EntityCreature.class, AxisAlignedBB.getBoundingBox(i - 8, j - 8, k - 8, i + 8, j + 8, k + 8));
 		if (!list.isEmpty()) {
 			for (int p = 0; p < list.size(); p++) {
 				EntityCreature entities = (EntityCreature) list.get(p);
