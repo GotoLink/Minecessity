@@ -1,0 +1,17 @@
+[
+{
+  "modid": "minecessity",
+  "name": "Minecessity",
+  "description": "",
+  "version": "0.1",
+  "credits": "Made by Will.Eze, Updated by GotoLink",
+  "logoFile": "",
+  "mcversion": "",
+  "url": "http://www.minecraftforum.net/topic/575973-",
+  "updateUrl": "",
+  "authors": ["Will.Eze","GotoLink"],
+  "parent":"",
+  "screenshots": [],
+  "dependencies": []
+}
+]
