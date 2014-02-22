@@ -1,18 +1,14 @@
 package assets.minecessity.items;
 
-import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class MagicItem extends Item {
-	protected int block;
-
-	public MagicItem(int i, int blockID) {
-		super(i);
-		this.block = blockID;
-		this.setCreativeTab(CreativeTabs.tabDecorations);
+public class MagicItem extends ItemBlock {
+	public MagicItem(Block blockID) {
+		super(blockID);
 	}
 
 	@Override
@@ -30,8 +26,8 @@ public class MagicItem extends Item {
 			i--;
 		if (l == 5)
 			i++;
-		world.setBlock(i, j, k, block);
-		if (world.getBlockId(i, j, k) == block)
+		world.setBlock(i, j, k, field_150939_a);
+		if (world.getBlock(i, j, k) == field_150939_a)
 			itemStack.stackSize--;
 		return true;
 	}

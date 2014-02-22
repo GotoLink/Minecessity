@@ -13,10 +13,10 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
 public class BlockMobAttract extends Block {
-	public BlockMobAttract(int i) {
-		super(i, Material.ground);
-		setTickRandomly(true);
-		setCreativeTab(CreativeTabs.tabRedstone);
+	public BlockMobAttract() {
+		super(Material.ground);
+        setTickRandomly(true);
+        setCreativeTab(CreativeTabs.tabRedstone);
 	}
 
 	@Override

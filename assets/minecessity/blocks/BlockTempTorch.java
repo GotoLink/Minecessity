@@ -2,6 +2,7 @@ package assets.minecessity.blocks;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -9,9 +10,9 @@ import net.minecraft.world.World;
 import assets.minecessity.Minecessity;
 
 public class BlockTempTorch extends BlockTorch {
-	public BlockTempTorch(int i) {
-		super(i);
-		setTextureName("torch_on");
+	public BlockTempTorch() {
+		super();
+        setBlockTextureName("torch_on");
 	}
 
 	@Override
@@ -20,7 +21,7 @@ public class BlockTempTorch extends BlockTorch {
 	}
 
 	@Override
-	public void onNeighborBlockChange(World world, int i, int j, int k, int l) {
+	public void onNeighborBlockChange(World world, int i, int j, int k, Block l) {
 		super.onNeighborBlockChange(world, i, j, k, l);
 		removeIfNoPlayerNearby(world, i, j, k);
 	}

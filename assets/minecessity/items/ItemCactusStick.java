@@ -13,8 +13,8 @@ import net.minecraft.world.World;
 import assets.minecessity.Minecessity;
 
 public class ItemCactusStick extends Item {
-	public ItemCactusStick(int i) {
-		super(i);
+	public ItemCactusStick() {
+		super();
 		setMaxStackSize(1);
 		setMaxDamage(32);
 		setFull3D();
@@ -24,7 +24,7 @@ public class ItemCactusStick extends Item {
 	@Override
 	public void onUpdate(ItemStack itemstack, World world, Entity entity, int k, boolean flag) {
 		super.onUpdate(itemstack, world, entity, k, flag);
-		if (itemstack != null && itemstack.itemID == Minecessity.cactusStick.itemID && entity instanceof EntityPlayer) {
+		if (itemstack != null && itemstack.getItem() == Minecessity.cactusStick && entity instanceof EntityPlayer) {
 			List<?> list = world.getEntitiesWithinAABB(EntityCreature.class, ((EntityPlayer) entity).boundingBox.expand(1, 1, 1));
 			if (!list.isEmpty()) {
 				for (int i = 0; i < list.size(); i++) {

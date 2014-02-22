@@ -1,11 +1,11 @@
 ﻿
-item.minecessity:table.name=Table
-item.minecessity:chair.name=Chair
-item.minecessity:ceilLamp.name=Ceiling Lamp
 item.minecessity:cactusPicker.name=Cactus Picker
 item.minecessity:portableWorkBench.name=Portable Workbench
 item.minecessity:particleGun.name=Particles Gun
 
+tile.minecessity:table.name=Table
+tile.minecessity:chair.name=Chair
+tile.minecessity:ceilLamp.name=Ceiling Lamp
 tile.minecessity:mobAttractor.name=Mob Attractor
 tile.minecessity:temptorch.name=Temporary Torch
 tile.minecessity:deflector.name=Deflector

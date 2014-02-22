@@ -8,8 +8,8 @@ import net.minecraft.world.World;
 import assets.minecessity.EntityLightBullet;
 
 public class ItemParticleGun extends Item {
-	public ItemParticleGun(int i) {
-		super(i);
+	public ItemParticleGun() {
+		super();
 		setMaxStackSize(1);
 		setMaxDamage(128);
 		setCreativeTab(CreativeTabs.tabRedstone);

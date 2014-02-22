@@ -1,12 +1,13 @@
 package assets.minecessity.items;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ItemCeilLamp extends MagicItem {
-	public ItemCeilLamp(int i, int blockID) {
-		super(i, blockID);
+	public ItemCeilLamp(Block blockID) {
+		super(blockID);
 	}
 
 	@Override
@@ -25,8 +26,8 @@ public class ItemCeilLamp extends MagicItem {
 		if (l == 5)
 			i++;
 		if (!world.isAirBlock(i, j + 1, k))
-			world.setBlock(i, j, k, block);
-		if (world.getBlockId(i, j, k) == block)
+			world.setBlock(i, j, k, field_150939_a);
+		if (world.getBlock(i, j, k) == field_150939_a)
 			itemStack.stackSize--;
 		return true;
 	}

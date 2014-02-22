@@ -15,10 +15,10 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
 public class BlockProjectDeflector extends Block {
-	public BlockProjectDeflector(int i) {
-		super(i, Material.ground);
-		setTickRandomly(true);
-		setCreativeTab(CreativeTabs.tabRedstone);
+	public BlockProjectDeflector() {
+		super(Material.ground);
+        setTickRandomly(true);
+        setCreativeTab(CreativeTabs.tabRedstone);
 	}
 
 	@Override

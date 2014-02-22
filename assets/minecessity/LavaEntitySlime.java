@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.monster.EntitySlime;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
@@ -21,7 +22,7 @@ public class LavaEntitySlime extends EntitySlime {
 		for (int i1 = i - 16; i1 <= i + 16; i1++) {
 			for (int j1 = j - 6; j1 <= j + 6; j1++) {
 				for (int k1 = k - 16; k1 <= k + 16; k1++) {
-					if (worldObj.getBlockMaterial(i1, j1, k1) == Material.lava)
+					if (worldObj.getBlock(i1, j1, k1).getMaterial() == Material.lava)
 						nearLava = true;
 				}
 			}
@@ -36,7 +37,7 @@ public class LavaEntitySlime extends EntitySlime {
 	}
 
 	@Override
-	protected int getDropItemId() {
-		return Item.slimeBall.itemID;
+	protected Item getDropItem() {
+		return Items.slime_ball;
 	}
 }

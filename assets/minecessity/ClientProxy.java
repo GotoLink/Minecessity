@@ -37,7 +37,7 @@ public class ClientProxy extends CommonProxy implements ISimpleBlockRenderingHan
 	}
 
 	@Override
-	public boolean shouldRender3DInInventory() {
+	public boolean shouldRender3DInInventory(int i) {
 		return false;
 	}
 

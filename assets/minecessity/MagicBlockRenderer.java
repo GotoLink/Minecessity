@@ -3,7 +3,8 @@ package assets.minecessity;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.util.Icon;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -17,9 +18,9 @@ public class MagicBlockRenderer extends RenderBlocks {
 	public boolean renderCeilLamp(RenderBlocks renderblocks, IBlockAccess iblockaccess, int i, int j, int k, Block block) {
 		Tessellator tessellator = Tessellator.instance;
 		int side = 0;
-		Icon texture = block.getBlockTexture(iblockaccess, i, j, k, side);
-		float f = block.getBlockBrightness(iblockaccess, i, j, k);
-		tessellator.setColorOpaque_F(f, f, f);
+		IIcon texture = block.getIcon(iblockaccess, i, j, k, side);
+		int f = block.colorMultiplier(iblockaccess, i, j, k);
+		tessellator.setColorOpaque_F((float)(f >> 16 & 255) / 255.0F, (float)(f >> 8 & 255) / 255.0F, (float)(f & 255) / 255.0F);
 		//int p1 = (texture & 0xf) << 4;
 		//int p2 = texture & 0xf0;
 		double tX1 = texture.getMinU();//((float)p1 + 15.99F) / 256F;
@@ -34,7 +35,7 @@ public class MagicBlockRenderer extends RenderBlocks {
 		addCube(tessellator, i + 0.4F, j - 0.6F, k - 0.3F, i + 0.6F, j - 0.45F, k - 0.1F, tX1, tY1, tX2, tY2);
 		addCube(tessellator, i + 1.1F, j - 0.6F, k + 0.4F, i + 1.3F, j - 0.45F, k + 0.6F, tX1, tY1, tX2, tY2);
 		addCube(tessellator, i + 0.4F, j - 0.6F, k + 1.1F, i + 0.6F, j - 0.45F, k + 1.3F, tX1, tY1, tX2, tY2);
-		texture = Block.glowStone.getIcon(0, 0);
+		texture = Blocks.glowstone.getIcon(0, 0);
 		//p1 = (texture & 0xf) << 4;
 		//p2 = texture & 0xf0;
 		tX1 = texture.getMinU();//((float)p1 + 15.99F) / 256F;
@@ -51,8 +52,9 @@ public class MagicBlockRenderer extends RenderBlocks {
 	public boolean renderChair(RenderBlocks renderblocks, IBlockAccess iblockaccess, int i, int j, int k, Block block) {
 		Tessellator tessellator = Tessellator.instance;
 		int side = 0;
-		Icon texture = block.getBlockTexture(iblockaccess, i, j, k, side);
-		float f = block.getBlockBrightness(iblockaccess, i, j, k);
+		IIcon texture = block.getIcon(iblockaccess, i, j, k, side);
+        int f = block.colorMultiplier(iblockaccess, i, j, k);
+        tessellator.setColorOpaque_F((float)(f >> 16 & 255) / 255.0F, (float)(f >> 8 & 255) / 255.0F, (float)(f & 255) / 255.0F);
 		tessellator.setColorOpaque_F(f, f, f);
 		//int p1 = (texture & 0xf) << 4;
 		//int p2 = texture & 0xf0;
@@ -76,9 +78,9 @@ public class MagicBlockRenderer extends RenderBlocks {
 	public boolean renderTable(RenderBlocks renderblocks, IBlockAccess iblockaccess, int i, int j, int k, Block block) {
 		Tessellator tessellator = Tessellator.instance;
 		int side = 0;
-		Icon texture = block.getBlockTexture(iblockaccess, i, j, k, side);
-		float f = block.getBlockBrightness(iblockaccess, i, j, k);
-		tessellator.setColorOpaque_F(f, f, f);
+		IIcon texture = block.getIcon(iblockaccess, i, j, k, side);
+        int f = block.colorMultiplier(iblockaccess, i, j, k);
+        tessellator.setColorOpaque_F((float)(f >> 16 & 255) / 255.0F, (float)(f >> 8 & 255) / 255.0F, (float)(f & 255) / 255.0F);
 		//int p1 = (texture & 0xf) << 4;
 		//int p2 = texture & 0xf0;
 		double tX1 = texture.getMinU();//((float)p1 + 15.99F) / 256F;

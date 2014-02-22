@@ -9,8 +9,8 @@ import assets.minecessity.CommonProxy;
 import assets.minecessity.Minecessity;
 
 public class ItemPrtbWorkBence extends Item {
-	public ItemPrtbWorkBence(int i) {
-		super(i);
+	public ItemPrtbWorkBence() {
+		super();
 		setMaxStackSize(1);
 		setMaxDamage(100);
 		setCreativeTab(CreativeTabs.tabTools);
