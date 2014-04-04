@@ -5,3 +5,7 @@
 !mcmod.info
 !pack.mcmeta
 !/assets
+!/gradle/
+!gradle*
+!update.xml
+!changelog.md

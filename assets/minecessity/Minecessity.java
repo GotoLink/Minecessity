@@ -1,7 +1,8 @@
 package assets.minecessity;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.ModContainer;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockTorch;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -29,7 +30,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "minecessity", name = "Minecessity", version = "0.2")
+@Mod(modid = "minecessity", name = "Minecessity", useMetadata = true)
 public class Minecessity {
 	@Instance("minecessity")
 	public static Minecessity instance;
@@ -70,6 +71,16 @@ public class Minecessity {
         portableWorkBench = new ItemPrtbWorkBence().setUnlocalizedName("minecessity:portableWorkBench").setTextureName("minecessity:portableWorkBench");
         particleGun = new ItemParticleGun().setUnlocalizedName("minecessity:particleGun").setTextureName("minecessity:particleGun");
         registerBlocksItemsRecipes();
+        if(event.getSourceFile().getName().endsWith(".jar") && event.getSide().isClient()){
+            try {
+                Class.forName("mods.mud.ModUpdateDetector").getDeclaredMethod("registerMod", ModContainer.class, String.class, String.class).invoke(null,
+                        FMLCommonHandler.instance().findContainerFor(this),
+                        "https://raw.github.com/GotoLink/Minecessity/master/update.xml",
+                        "https://raw.github.com/GotoLink/Minecessity/master/changelog.md"
+                );
+            } catch (Throwable e) {
+            }
+        }
 	}
 
 	public void registerBlocksItemsRecipes() {
