@@ -2,6 +2,8 @@ package assets.minecessity;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.ModContainer;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
@@ -107,17 +109,4 @@ public class Minecessity {
 		GameRegistry.addRecipe(new ItemStack(particleGun, 1), "123", " 45", " 6I", 'I', Items.iron_ingot, '1', new ItemStack(Items.dye, 1), '2', new ItemStack(Items.dye, 2),
 				'3', new ItemStack(Items.dye, 4), '4', new ItemStack(Items.dye, 7), '5', new ItemStack(Items.dye, 8), '6', new ItemStack(Items.dye, 15));
 	}
-	/*
-	 * @Deprecated public boolean OnTickInGame(Minecraft minecraft) {
-	 * EntityPlayer player = minecraft.thePlayer; int x =
-	 * deflectorEffectiveRange; for(int i = (int)Math.floor(player.posX)-x ; i
-	 * <(int)Math.floor(player.posX)+x ; i++){ for(int j =
-	 * (int)Math.floor(player.boundingBox.minY)-x ; j
-	 * <(int)Math.floor(player.boundingBox.maxY)+x ; j++){ for(int k =
-	 * (int)Math.floor(player.posZ)-x ; k <(int)Math.floor(player.posZ)+x ;
-	 * k++){ if(minecraft.theWorld.getBlockId(i,j,k)==projDeflector.blockID)
-	 * ((BlockProjectDeflector
-	 * )projDeflector).deflectProjectiles(minecraft.theWorld,i,j,k); }}} return
-	 * true; }
-	 */
 }

@@ -12,7 +12,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityLightBullet extends EntityThrowable {
-	public int maxLife;
+	public final int maxLife;
 	protected int particlesType;
 
 	public EntityLightBullet(World world) {
@@ -56,7 +56,6 @@ public class EntityLightBullet extends EntityThrowable {
 					s = (x == 0 ? "note" : x == 1 ? "heart" : "bubble");
 					break;
 				}
-				System.err.println(s);
 				this.worldObj.spawnParticle(s, posX, posY + width, posZ, -motionX / 4, -motionY / 4, -motionZ / 4);
 			}
 		}

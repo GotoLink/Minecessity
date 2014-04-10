@@ -14,7 +14,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class MagicBlock extends Block {
-	public int type;
+	public final int type;
 	public MagicBlock(int renderType) {
 		super(Material.circuits);//Material.ground would affect color
 		this.setTickRandomly(true);
