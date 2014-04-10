@@ -13,11 +13,17 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
 public class BlockMobAttract extends Block {
+    static int range = 16;
 	public BlockMobAttract() {
 		super(Material.ground);
-        setTickRandomly(true);
         setCreativeTab(CreativeTabs.tabRedstone);
 	}
+
+    @Override
+    public int onBlockPlaced(World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int meta){
+        world.scheduleBlockUpdate(x, y, z, this, tickRate(world));
+        return super.onBlockPlaced(world, x, y, z, side, hitX, hitY, hitZ, meta);
+    }
 
 	@Override
 	public int tickRate(World world) {
@@ -26,7 +32,7 @@ public class BlockMobAttract extends Block {
 
 	@Override
 	public void updateTick(World world, int i, int j, int k, Random random) {
-		List<?> list = world.getEntitiesWithinAABB(EntityCreature.class, AxisAlignedBB.getBoundingBox(i - 8, j - 8, k - 8, i + 8, j + 8, k + 8));
+		List<?> list = world.getEntitiesWithinAABB(EntityCreature.class, AxisAlignedBB.getBoundingBox(i - range, j - range, k - range, i + range, j + range, k + range));
 		if (!list.isEmpty()) {
 			for (int p = 0; p < list.size(); p++) {
 				EntityCreature entities = (EntityCreature) list.get(p);
@@ -39,5 +45,6 @@ public class BlockMobAttract extends Block {
 				}
 			}
 		}
+        world.scheduleBlockUpdate(i, j, k, world.getBlock(i, j, k), tickRate(world));
 	}
 }
