@@ -15,11 +15,17 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
 public class BlockProjectDeflector extends Block {
+    static int range = 16;
 	public BlockProjectDeflector() {
 		super(Material.ground);
-        setTickRandomly(true);
         setCreativeTab(CreativeTabs.tabRedstone);
 	}
+
+    @Override
+    public int onBlockPlaced(World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int meta){
+        world.scheduleBlockUpdate(x, y, z, this, tickRate(world));
+        return super.onBlockPlaced(world, x, y, z, side, hitX, hitY, hitZ, meta);
+    }
 
 	@Override
 	public int tickRate(World world) {
@@ -28,27 +34,23 @@ public class BlockProjectDeflector extends Block {
 
 	@Override
 	public void updateTick(World world, int i, int j, int k, Random random) {
-		super.updateTick(world, i, j, k, random);
 		deflectProjectiles(world, i, j, k);
+        world.scheduleBlockUpdate(i, j, k, this, tickRate(world));
 	}
 
 	public void deflectProjectiles(World world, int i, int j, int k) {
-		int p = 16;
-		List<?> list = world.getEntitiesWithinAABB(Entity.class, AxisAlignedBB.getBoundingBox(i - p, j - p, k - p, i + p, j + p, k + p));
+		List<?> list = world.getEntitiesWithinAABB(Entity.class, AxisAlignedBB.getBoundingBox(i - range, j - range, k - range, i + range, j + range, k + range));
 		if (!list.isEmpty()) {
 			for (int p1 = 0; p1 < list.size(); p1++) {
 				Entity e = (Entity) list.get(p1);
-				if (e instanceof IProjectile || e instanceof EntityFireball) { //|| e instanceof EntityFX
-					/*
-					 * double xM = 0; double yM = 0; double zM = 0; switch(p3){
-					 * case 0:{xM=e.motionX ; yM=e.motionZ ; zM=e.motionY
-					 * ;break;} case 1:{xM=e.motionZ ; yM=e.motionY ;
-					 * zM=e.motionX ;break;} case 2:{xM=e.motionY ; yM=e.motionX
-					 * ; zM=e.motionZ ;break;} case 3:{xM=e.motionY ;
-					 * yM=e.motionZ ; zM=e.motionX ;break;} case 4:{xM=e.motionZ
-					 * ; yM=e.motionX ; zM=e.motionY ;break;} }
-					 * e.setVelocity(xM,yM,zM);
-					 */
+				if (e instanceof IProjectile || e instanceof EntityFireball) {
+                    double xM = e.posX - i; double yM = e.posY - j; double zM = e.posZ - k;
+                    if(xM!=0)
+					    e.motionX *= 1/xM;
+                    if(yM!=0)
+                        e.motionY *= 1/yM;
+                    if(zM!=0)
+                        e.motionZ *= 1/zM;
 				}
 				if (e instanceof EntityLightningBolt) {
 					e.setPosition(e.posX + new Random().nextGaussian() * 4 - 2, e.posY + new Random().nextGaussian() * 4 - 2, e.posZ + new Random().nextGaussian() * 4 - 2);
