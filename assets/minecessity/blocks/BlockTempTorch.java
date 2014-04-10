@@ -40,8 +40,8 @@ public class BlockTempTorch extends BlockTorch {
 				range++;
 			}
 			player = world.getClosestPlayer(i, j, k, range);
-			player.inventory.addItemStackToInventory(new ItemStack(Minecessity.tempTorch));
-			world.setBlockToAir(i, j, k);
+			if(player.inventory.addItemStackToInventory(new ItemStack(Minecessity.tempTorch)))
+			    world.setBlockToAir(i, j, k);
 		}
 	}
 }
