@@ -1,0 +1,12 @@
+
+item.minecessity:cactusPicker.name=Собиратель кактусов
+item.minecessity:portableWorkBench.name=Портативный верстак
+item.minecessity:particleGun.name=Пушка частиц
+
+tile.minecessity:table.name=Стол
+tile.minecessity:chair.name=Стул
+tile.minecessity:ceilLamp.name=Потолочный светильник
+tile.minecessity:mobAttractor.name=Притяжатель мобов
+tile.minecessity:temptorch.name=Временный факел
+tile.minecessity:deflector.name=Отражатель
+tile.minecessity:particleBlock.name=Блок частиц
