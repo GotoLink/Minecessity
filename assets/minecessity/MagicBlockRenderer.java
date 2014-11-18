@@ -10,12 +10,10 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class MagicBlockRenderer extends RenderBlocks {
-	protected MagicBlockRenderer() {
-		super();
-	}
+public class MagicBlockRenderer {
+    public static final MagicBlockRenderer INSTANCE = new MagicBlockRenderer();
 
-	public boolean renderCeilLamp(RenderBlocks renderblocks, IBlockAccess iblockaccess, int i, int j, int k, Block block) {
+	public boolean renderCeilLamp(IBlockAccess iblockaccess, int i, int j, int k, Block block) {
 		Tessellator tessellator = Tessellator.instance;
 		int side = 0;
 		IIcon texture = block.getIcon(iblockaccess, i, j, k, side);
@@ -49,7 +47,7 @@ public class MagicBlockRenderer extends RenderBlocks {
 		return true;
 	}
 
-	public boolean renderChair(RenderBlocks renderblocks, IBlockAccess iblockaccess, int i, int j, int k, Block block) {
+	public boolean renderChair(IBlockAccess iblockaccess, int i, int j, int k, Block block) {
 		Tessellator tessellator = Tessellator.instance;
 		int side = 0;
 		IIcon texture = block.getIcon(iblockaccess, i, j, k, side);
@@ -75,7 +73,7 @@ public class MagicBlockRenderer extends RenderBlocks {
 		return true;
 	}
 
-	public boolean renderTable(RenderBlocks renderblocks, IBlockAccess iblockaccess, int i, int j, int k, Block block) {
+	public boolean renderTable(IBlockAccess iblockaccess, int i, int j, int k, Block block) {
 		Tessellator tessellator = Tessellator.instance;
 		int side = 0;
 		IIcon texture = block.getIcon(iblockaccess, i, j, k, side);

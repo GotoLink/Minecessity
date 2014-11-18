@@ -34,8 +34,8 @@ public class BlockMobAttract extends Block {
 	public void updateTick(World world, int i, int j, int k, Random random) {
 		List<?> list = world.getEntitiesWithinAABB(EntityCreature.class, AxisAlignedBB.getBoundingBox(i - range, j - range, k - range, i + range, j + range, k + range));
 		if (!list.isEmpty()) {
-			for (int p = 0; p < list.size(); p++) {
-				EntityCreature entities = (EntityCreature) list.get(p);
+			for (Object p : list) {
+				EntityCreature entities = (EntityCreature) p;
 				if (entities.getDistance(i, j, k) > 2) {
 					float f = 8F;
 					if (entities instanceof EntityMob)

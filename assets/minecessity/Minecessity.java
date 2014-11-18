@@ -80,7 +80,7 @@ public class Minecessity {
                         "https://raw.github.com/GotoLink/Minecessity/master/update.xml",
                         "https://raw.github.com/GotoLink/Minecessity/master/changelog.md"
                 );
-            } catch (Throwable e) {
+            } catch (Throwable ignored) {
             }
         }
 	}

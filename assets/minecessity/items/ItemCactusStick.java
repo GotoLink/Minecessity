@@ -27,8 +27,8 @@ public class ItemCactusStick extends Item {
 		if (itemstack != null && itemstack.getItem() == Minecessity.cactusStick && entity instanceof EntityPlayer) {
 			List<?> list = world.getEntitiesWithinAABB(EntityCreature.class, ((EntityPlayer) entity).boundingBox.expand(1, 1, 1));
 			if (!list.isEmpty()) {
-				for (int i = 0; i < list.size(); i++) {
-					EntityCreature entities = ((EntityCreature) list.get(i));
+				for (Object i : list) {
+					EntityCreature entities = (EntityCreature) i;
 					if (!entities.isDead && ((EntityPlayer) entity).ticksExisted % 20 == 0) {
 						entities.attackEntityFrom(DamageSource.cactus, 2);
 						itemstack.damageItem(1, (EntityPlayer) entity);

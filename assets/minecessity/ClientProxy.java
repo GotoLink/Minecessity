@@ -18,15 +18,15 @@ public class ClientProxy extends CommonProxy implements ISimpleBlockRenderingHan
 	@Override
 	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
 		if (modelId == rendererTable) {
-			new MagicBlockRenderer().renderTable(renderer, world, x, y, z, block);
+			MagicBlockRenderer.INSTANCE.renderTable(world, x, y, z, block);
 			return true;
 		}
 		if (modelId == rendererChair) {
-			new MagicBlockRenderer().renderChair(renderer, world, x, y, z, block);
+            MagicBlockRenderer.INSTANCE.renderChair(world, x, y, z, block);
 			return true;
 		}
 		if (modelId == rendererCeilLamp) {
-			new MagicBlockRenderer().renderCeilLamp(renderer, world, x, y, z, block);
+            MagicBlockRenderer.INSTANCE.renderCeilLamp(world, x, y, z, block);
 			return true;
 		}
 		return false;
