@@ -1,17 +1,18 @@
 package assets.minecessity;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class MagicBlockRenderer {
+public final class MagicBlockRenderer {
     public static final MagicBlockRenderer INSTANCE = new MagicBlockRenderer();
+
+    private MagicBlockRenderer(){}
 
 	public boolean renderCeilLamp(IBlockAccess iblockaccess, int i, int j, int k, Block block) {
 		Tessellator tessellator = Tessellator.instance;

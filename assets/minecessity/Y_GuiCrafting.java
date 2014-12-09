@@ -1,17 +1,15 @@
 package assets.minecessity;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-
 import org.lwjgl.opengl.GL11;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 @SideOnly(Side.CLIENT)
-public class Y_GuiCrafting extends GuiContainer {
+public final class Y_GuiCrafting extends GuiContainer {
 	private static final ResourceLocation guiLoc = new ResourceLocation("textures/gui/container/crafting_table.png");
 
 	public Y_GuiCrafting(InventoryPlayer inventoryplayer, World world, int i, int j, int k) {

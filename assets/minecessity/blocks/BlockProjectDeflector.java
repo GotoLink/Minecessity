@@ -1,8 +1,5 @@
 package assets.minecessity.blocks;
 
-import java.util.List;
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -13,6 +10,9 @@ import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
+
+import java.util.List;
+import java.util.Random;
 
 public class BlockProjectDeflector extends Block {
     static int range = 16;

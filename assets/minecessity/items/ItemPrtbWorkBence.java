@@ -1,12 +1,12 @@
 package assets.minecessity.items;
 
+import assets.minecessity.CommonProxy;
+import assets.minecessity.Minecessity;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import assets.minecessity.CommonProxy;
-import assets.minecessity.Minecessity;
 
 public class ItemPrtbWorkBence extends Item {
 	public ItemPrtbWorkBence() {

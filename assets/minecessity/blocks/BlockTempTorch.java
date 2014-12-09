@@ -1,13 +1,13 @@
 package assets.minecessity.blocks;
 
-import java.util.Random;
-
+import assets.minecessity.Minecessity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import assets.minecessity.Minecessity;
+
+import java.util.Random;
 
 public class BlockTempTorch extends BlockTorch {
 	public BlockTempTorch() {
@@ -36,11 +36,11 @@ public class BlockTempTorch extends BlockTorch {
 		EntityPlayer player = world.getClosestPlayer(i, j, k, 63);
 		if (player == null) {
 			int range = 64;
-			while (world.getClosestPlayer(i, j, k, range) == null) {
+			while (world.getClosestPlayer(i, j, k, range) == null && range<128) {
 				range++;
 			}
 			player = world.getClosestPlayer(i, j, k, range);
-			if(player.inventory.addItemStackToInventory(new ItemStack(Minecessity.tempTorch)))
+			if(player!=null && player.inventory.addItemStackToInventory(new ItemStack(Minecessity.tempTorch)))
 			    world.setBlockToAir(i, j, k);
 		}
 	}

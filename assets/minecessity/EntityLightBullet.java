@@ -1,17 +1,19 @@
 package assets.minecessity;
 
-import java.util.Random;
-
+import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
-public class EntityLightBullet extends EntityThrowable {
+import java.util.Random;
+
+public class EntityLightBullet extends EntityThrowable implements IEntityAdditionalSpawnData{
 	public final int maxLife;
 	protected int particlesType;
 
@@ -21,6 +23,11 @@ public class EntityLightBullet extends EntityThrowable {
 		this.renderDistanceWeight = 4D;
 		this.maxLife = 100;
 	}
+
+    public EntityLightBullet(World world, int type){
+        this(world);
+        this.setParticleType(type);
+    }
 
 	public EntityLightBullet(World world, EntityLivingBase entity) {
 		super(world, entity);
@@ -41,7 +48,7 @@ public class EntityLightBullet extends EntityThrowable {
 			String s;
 			int x;
 			for (int p = 0; p < 2; p++) {
-				x = new Random().nextInt(3);
+				x = rand.nextInt(3);
 				switch (this.particlesType) {
 				case 0:/* Fire */
 					s = (x == 0 ? "flame" : x == 1 ? "lava" : "largesmoke");
@@ -113,4 +120,14 @@ public class EntityLightBullet extends EntityThrowable {
 		this.particlesType = type;
 		return this;
 	}
+
+    @Override
+    public void writeSpawnData(ByteBuf buffer) {
+        buffer.writeByte(particlesType);
+    }
+
+    @Override
+    public void readSpawnData(ByteBuf additionalData) {
+        setParticleType(additionalData.readByte());
+    }
 }

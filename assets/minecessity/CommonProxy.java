@@ -1,8 +1,8 @@
 package assets.minecessity;
 
+import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import cpw.mods.fml.common.network.IGuiHandler;
 
 public class CommonProxy implements IGuiHandler {
 	public static final int rendererTable = -10, rendererChair = -11, rendererCeilLamp = -12, CRAFT_GUI_ID = 123;
@@ -25,4 +25,8 @@ public class CommonProxy implements IGuiHandler {
 		else
 			return null;
 	}
+
+    public void trySendUpdate() {
+
+    }
 }

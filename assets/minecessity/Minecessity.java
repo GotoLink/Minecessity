@@ -1,9 +1,18 @@
 package assets.minecessity;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.ModContainer;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
+import assets.minecessity.blocks.*;
+import assets.minecessity.items.*;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.GameData;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
@@ -12,28 +21,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.config.Configuration;
-import assets.minecessity.blocks.BlockMobAttract;
-import assets.minecessity.blocks.BlockParticle;
-import assets.minecessity.blocks.BlockProjectDeflector;
-import assets.minecessity.blocks.BlockTempTorch;
-import assets.minecessity.blocks.MagicBlock;
-import assets.minecessity.items.ItemCactusStick;
-import assets.minecessity.items.ItemCeilLamp;
-import assets.minecessity.items.ItemParticleGun;
-import assets.minecessity.items.ItemPrtbWorkBence;
-import assets.minecessity.items.MagicItem;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = "minecessity", name = "Minecessity", useMetadata = true)
-public class Minecessity {
+public final class Minecessity {
 	@Instance("minecessity")
 	public static Minecessity instance;
 	@SidedProxy(clientSide = "assets.minecessity.ClientProxy", serverSide = "assets.minecessity.CommonProxy")
@@ -57,7 +47,6 @@ public class Minecessity {
 	@EventHandler
 	public void prepareProps(FMLPreInitializationEvent event) {
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
-		config.load();
 		deflectorEffectiveRange = config.get("general", "Deflector Effective Range", 8).getInt();
 		slimeSpawnLimit = config.get("general", "Slime spawn limit by chunk", 3).getInt();
 		if (config.hasChanged())
@@ -73,40 +62,47 @@ public class Minecessity {
         portableWorkBench = new ItemPrtbWorkBence().setUnlocalizedName("minecessity:portableWorkBench").setTextureName("minecessity:portableWorkBench");
         particleGun = new ItemParticleGun().setUnlocalizedName("minecessity:particleGun").setTextureName("minecessity:particleGun");
         registerBlocksItemsRecipes();
-        if(event.getSourceFile().getName().endsWith(".jar") && event.getSide().isClient()){
-            try {
-                Class.forName("mods.mud.ModUpdateDetector").getDeclaredMethod("registerMod", ModContainer.class, String.class, String.class).invoke(null,
-                        FMLCommonHandler.instance().findContainerFor(this),
-                        "https://raw.github.com/GotoLink/Minecessity/master/update.xml",
-                        "https://raw.github.com/GotoLink/Minecessity/master/changelog.md"
-                );
-            } catch (Throwable ignored) {
-            }
+        if(event.getSourceFile().getName().endsWith(".jar")){
+            proxy.trySendUpdate();
         }
 	}
 
-	public void registerBlocksItemsRecipes() {
+	private void registerBlocksItemsRecipes() {
 		GameRegistry.registerBlock(table, MagicItem.class, "Table");
-		GameRegistry.addRecipe(new ItemStack(table, 1), "XLX", " Y ", " X ", 'X', Blocks.planks, 'L', Blocks.lever, 'Y', Items.iron_ingot);
+		GameRegistry.addRecipe(new ItemStack(table), "XLX", " Y ", " X ", 'X', Blocks.planks, 'L', Blocks.lever, 'Y', Items.iron_ingot);
 		GameRegistry.registerBlock(chair, MagicItem.class, "Chair");
-		GameRegistry.addRecipe(new ItemStack(chair, 1), " W ", " LI", " WW", 'W', Blocks.planks, 'L', Blocks.lever, 'I', Items.iron_ingot);
-		GameRegistry.registerBlock(ceilLamp, ItemCeilLamp.class, "Ceiling Lamp");
-		GameRegistry.addRecipe(new ItemStack(ceilLamp, 1), " W ", " L ", "GIG", 'W', Blocks.planks, 'L', Blocks.lever, 'G', Blocks.glowstone, 'I', Items.iron_ingot);
-		GameRegistry.registerBlock(mobAttractor, "Mob Attractor");
-		GameRegistry.addRecipe(new ItemStack(mobAttractor, 1), "XYX", "YBY", "XYX", 'X', Blocks.cobblestone, 'Y', Blocks.sapling, 'B', Items.bone);
-		GameRegistry.registerBlock(tempTorch, "Temporary Torch");
-		GameRegistry.addRecipe(new ItemStack(tempTorch, 1), "X", 'X', Blocks.torch);
-		GameRegistry.addRecipe(new ItemStack(Blocks.torch, 1), "X", 'X', tempTorch );
+		GameRegistry.addRecipe(new ItemStack(chair), " W ", " LI", " WW", 'W', Blocks.planks, 'L', Blocks.lever, 'I', Items.iron_ingot);
+		GameRegistry.registerBlock(ceilLamp, ItemCeilLamp.class, "CeilingLamp");
+		GameRegistry.addRecipe(new ItemStack(ceilLamp), " W ", " L ", "GIG", 'W', Blocks.planks, 'L', Blocks.lever, 'G', Blocks.glowstone, 'I', Items.iron_ingot);
+		GameRegistry.registerBlock(mobAttractor, "MobAttractor");
+		GameRegistry.addRecipe(new ItemStack(mobAttractor), "XYX", "YBY", "XYX", 'X', Blocks.cobblestone, 'Y', Blocks.sapling, 'B', Items.bone);
+		GameRegistry.registerBlock(tempTorch, "TemporaryTorch");
+		GameRegistry.addRecipe(new ItemStack(tempTorch), "X", 'X', Blocks.torch);
+		GameRegistry.addRecipe(new ItemStack(Blocks.torch), "X", 'X', tempTorch );
 		GameRegistry.registerBlock(projDeflector, "Deflector");
-		GameRegistry.addRecipe(new ItemStack(projDeflector, 1), "GLG", "B B", "GLG", 'G', Items.gold_ingot, 'L', Blocks.lever, 'B', Blocks.stone_button);
-		GameRegistry.registerBlock(particleBlock, "Particles Block");
-		GameRegistry.addRecipe(new ItemStack(particleBlock, 1), "CGC", "CDC", "CCC", 'C', Blocks.cobblestone, 'G', Blocks.glass, 'D', particleGun);
-		GameRegistry.registerItem(cactusStick, "Cactus Picker");
-		GameRegistry.addRecipe(new ItemStack(cactusStick, 1), "X", "X", "S", 'X', Blocks.cactus, 'S', Items.stick);
-		GameRegistry.registerItem(portableWorkBench, "Portable Workbench");
-		GameRegistry.addRecipe(new ItemStack(portableWorkBench, 1), "ILI", "RWR", "IRI", 'W', Blocks.crafting_table, 'I', Items.iron_ingot, 'R', Items.redstone, 'L', Blocks.lever);
-		GameRegistry.registerItem(particleGun, "Particles Gun");
-		GameRegistry.addRecipe(new ItemStack(particleGun, 1), "123", " 45", " 6I", 'I', Items.iron_ingot, '1', new ItemStack(Items.dye, 1), '2', new ItemStack(Items.dye, 2),
+		GameRegistry.addRecipe(new ItemStack(projDeflector), "GLG", "B B", "GLG", 'G', Items.gold_ingot, 'L', Blocks.lever, 'B', Blocks.stone_button);
+		GameRegistry.registerBlock(particleBlock, "ParticlesBlock");
+		GameRegistry.addRecipe(new ItemStack(particleBlock), "CGC", "CDC", "CCC", 'C', Blocks.cobblestone, 'G', Blocks.glass, 'D', particleGun);
+		GameRegistry.registerItem(cactusStick, "CactusPicker");
+		GameRegistry.addRecipe(new ItemStack(cactusStick), "X", "X", "S", 'X', Blocks.cactus, 'S', Items.stick);
+		GameRegistry.registerItem(portableWorkBench, "PortableWorkbench");
+		GameRegistry.addRecipe(new ItemStack(portableWorkBench), "ILI", "RWR", "IRI", 'W', Blocks.crafting_table, 'I', Items.iron_ingot, 'R', Items.redstone, 'L', Blocks.lever);
+		GameRegistry.registerItem(particleGun, "ParticlesGun");
+		GameRegistry.addRecipe(new ItemStack(particleGun), "123", " 45", " 6I", 'I', Items.iron_ingot, '1', new ItemStack(Items.dye, 1), '2', new ItemStack(Items.dye, 2),
 				'3', new ItemStack(Items.dye, 4), '4', new ItemStack(Items.dye, 7), '5', new ItemStack(Items.dye, 8), '6', new ItemStack(Items.dye, 15));
 	}
+
+    @EventHandler
+    public void onRemap(FMLMissingMappingsEvent event){
+        for(FMLMissingMappingsEvent.MissingMapping missingMapping : event.get()){
+            switch(missingMapping.type) {
+                case ITEM:
+                    missingMapping.remap(GameData.getItemRegistry().getObject(missingMapping.name.replace(" ", "")));
+                    break;
+                case BLOCK:
+                    missingMapping.remap(GameData.getBlockRegistry().getObject(missingMapping.name.replace(" ", "")));
+                    break;
+            }
+        }
+    }
 }

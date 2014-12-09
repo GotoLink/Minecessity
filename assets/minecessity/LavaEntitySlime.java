@@ -1,14 +1,14 @@
 package assets.minecessity;
 
-import java.util.Random;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
-public class LavaEntitySlime extends EntitySlime {
+import java.util.Random;
+
+public final class LavaEntitySlime extends EntitySlime {
 	public LavaEntitySlime(World world) {
 		super(world);
 	}
@@ -27,7 +27,7 @@ public class LavaEntitySlime extends EntitySlime {
 				}
 			}
 		}
-		return posY < 16D && nearLava && new Random().nextInt(20) == 0;
+		return posY < 16D && nearLava && rand.nextInt(20) == 0;
 	}
 
 	@Override
@@ -35,6 +35,12 @@ public class LavaEntitySlime extends EntitySlime {
 		int i = Minecessity.slimeSpawnLimit;
 		return i < 0 ? 0 : i;
 	}
+
+    @Override
+    protected EntitySlime createInstance()
+    {
+        return new LavaEntitySlime(this.worldObj);
+    }
 
 	@Override
 	protected Item getDropItem() {

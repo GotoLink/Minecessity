@@ -1,8 +1,5 @@
 package assets.minecessity.blocks;
 
-import java.util.List;
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -12,10 +9,13 @@ import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
+import java.util.List;
+import java.util.Random;
+
 public class BlockMobAttract extends Block {
-    static int range = 16;
+    public static int range = 16;
 	public BlockMobAttract() {
-		super(Material.ground);
+		super(Material.circuits);
         setCreativeTab(CreativeTabs.tabRedstone);
 	}
 
@@ -40,8 +40,9 @@ public class BlockMobAttract extends Block {
 					float f = 8F;
 					if (entities instanceof EntityMob)
 						f = 20F;
-					PathEntity path = world.getEntityPathToXYZ(entities, i, j, k, f, false, false, true, true);
+					PathEntity path = world.getEntityPathToXYZ(entities, i, j, k, f, true, true, false, true);
 					entities.setPathToEntity(path);
+                    entities.getNavigator().setPath(path, f/10);
 				}
 			}
 		}

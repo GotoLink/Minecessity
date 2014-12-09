@@ -21,7 +21,7 @@ minecraft {
     version = "1.7.10-10.13.2.1230"
     runDir = "eclipse"
 }
-version = "0.2"
+version = "0.3"
 archivesBaseName = project.projectDir.name
 sourceSets.main.java{srcDirs project.projectDir.getPath() include("assets/**")}
 sourceSets.main.resources{srcDirs project.projectDir.getPath() include("assets/**" , "*.info", "*.mcmeta")}

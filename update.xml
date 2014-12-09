@@ -1,4 +1,11 @@
 <mod modid="minecessity">
+    <mcVersion version="1.7.10">
+        <release type="release" version="0.3"
+                 url="http://www.minecraftforum.net/topic/1651891-/#Minecessity"
+                 download="http://www.mediafire.com/download/1155cpmobru5egb/Minecessity-0.3(1.7.10).jar"
+                 md5="EFE3D319056A615F5A23A4F4DF9E2108"
+                />
+    </mcVersion>
     <mcVersion version="1.7.2">
         <release type="release" version="0.2"
                  url="http://www.minecraftforum.net/topic/1651891-/#Minecessity"

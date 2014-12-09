@@ -1,3 +1,13 @@
+== Minecessity 0.3 ==
+* Remapped item/block names to fix /give
+* Made lava slimes 'infant' other lava slimes
+* Fixed particles block spawning
+* Added sound when interacting with particles block
+* Fixed mob attractor not working
+
+== Minecessity 0.2 ==
+* Changed feature: replace particle block gui with simple block interaction
+
 == Minecessity 0.1 ==
 * Forge port
 * SMP port
