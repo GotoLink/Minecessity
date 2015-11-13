@@ -1,0 +1,12 @@
+﻿
+item.minecessity:cactusPicker.name=Cueilleur de cactus
+item.minecessity:portableWorkBench.name=Atelier portable
+item.minecessity:particleGun.name=Canon à particules
+
+tile.minecessity:table.name=Table
+tile.minecessity:chair.name=Chaise
+tile.minecessity:ceilLamp.name=Plafonnier
+tile.minecessity:mobAttractor.name=Attracteur de créatures
+tile.minecessity:temptorch.name=Torche temporaire
+tile.minecessity:deflector.name=Déflecteur
+tile.minecessity:particleBlock.name=Bloc de particules
